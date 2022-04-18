@@ -7,6 +7,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var MyAllowSpecificOrigin = "_myAllowSpecificOrigin";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigin,
+        builder =>
+    {
+        builder.WithOrigins("http://localhost:8080");
+        builder.WithOrigins("http://127.0.0.1:5500");
+    });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
