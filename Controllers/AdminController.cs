@@ -1,3 +1,4 @@
+using ComputerStoreWebApi.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ComputerStoreWebApi.Controllers
@@ -7,11 +8,11 @@ namespace ComputerStoreWebApi.Controllers
     public class AdminController : ControllerBase
     {
         private int id = 0;    
-        private readonly ILogger<AdminController> _logger;
+        private readonly AppDbContext _dbContext;
 
-        public AdminController(ILogger<AdminController> logger)
+        public AdminController(AppDbContext dbContext)
         {
-            _logger = logger;
+            _dbContext = dbContext;
         }
         [HttpGet(Name = "Admin")]
         public IEnumerable<Admin> Get()
@@ -24,5 +25,6 @@ namespace ComputerStoreWebApi.Controllers
                 Password = "Admim"
             });
         }
+        [HttpPost ]
     }
 }
