@@ -25,6 +25,6 @@ namespace ComputerStoreWebApi.Controllers
                 Password = "Admim"
             });
         }
-        [HttpPost ]
+        
     }
 }
