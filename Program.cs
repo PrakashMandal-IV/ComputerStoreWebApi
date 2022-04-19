@@ -7,6 +7,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 var MyAllowSpecificOrigin = "_myAllowSpecificOrigin";
 builder.Services.AddCors(options =>
 {
