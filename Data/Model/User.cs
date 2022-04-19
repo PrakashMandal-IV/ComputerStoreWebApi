@@ -1,4 +1,4 @@
-﻿namespace ComputerStoreBackEnd.Data.Model
+﻿namespace ComputerStoreWebApi.Data.Model
 {
     public class User
     {

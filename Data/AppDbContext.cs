@@ -1,7 +1,8 @@
-﻿using ComputerStoreBackEnd.Controllers;
+﻿
+using ComputerStoreWebApi.Controllers;
 using Microsoft.EntityFrameworkCore;
 
-namespace ComputerStoreBackEnd.Data
+namespace ComputerStoreWebApi.Data
 {
     public class AppDbContext:DbContext
     {

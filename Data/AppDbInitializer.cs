@@ -1,8 +1,4 @@
-﻿
-
-
-using ComputerStoreBackEnd.Controllers;
-using ComputerStoreBackEnd.Data;
+﻿using ComputerStoreWebApi.Controllers;
 using ComputerStoreWebApi.Data;
 
 namespace ComputerStoreWebApi.Data
@@ -18,6 +14,7 @@ namespace ComputerStoreWebApi.Data
                 {
                     context.Admin.Add(new Admin()
                     {
+                        UserName ="Admin",
 
                     });
                         

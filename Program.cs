@@ -1,4 +1,4 @@
-using ComputerStoreBackEnd.Data;
+using ComputerStoreWebApi.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

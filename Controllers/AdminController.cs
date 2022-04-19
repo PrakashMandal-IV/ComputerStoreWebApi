@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ComputerStoreBackEnd.Controllers
+namespace ComputerStoreWebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]

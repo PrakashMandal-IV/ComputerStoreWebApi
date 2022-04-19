@@ -1,4 +1,4 @@
-﻿namespace ComputerStoreBackEnd.Controllers
+﻿namespace ComputerStoreWebApi.Controllers
 {
     public class Admin
     {
