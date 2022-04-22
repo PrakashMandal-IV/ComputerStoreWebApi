@@ -36,6 +36,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+AppDbInitializer.Seed(app);
 app.UseCors(MyAllowSpecificOrigin);
 app.UseHttpsRedirection();
 
@@ -45,4 +46,4 @@ app.MapControllers();
 
 app.Run();
 
-AppDbInitializer.Seed(app);
+

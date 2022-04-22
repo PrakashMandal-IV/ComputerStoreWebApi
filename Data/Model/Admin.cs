@@ -10,6 +10,7 @@
         public string Email { get; set; }
         public string? ImageUrl { get; set; }
         public int PhoneNumber { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public DateTime CreatedAt { get; set; }
         public int CreatedBy { get; set; }
         public DateTime ModifiedAt { get; set; }
