@@ -14,15 +14,12 @@ namespace ComputerStoreWebApi.Data
                 {
                     context.Admin.Add(new Admin()
                     {
+                        
                         UserName = "Admin",
                         Password = "Admin",
                         Email = "prakashmandal.iv@gmail.com",
-                        PhoneNumber = 0000000000,
-                        CreatedAt = DateTime.Now,
-                        CreatedBy = 0,
-                        ModifiedAt = DateTime.Now,
-                        ModifiedBy = 0,
-                    });
+                        PhoneNumber = 0000000000,                      
+                    }); ;
                     context.SaveChanges();
                 }                     
             }
