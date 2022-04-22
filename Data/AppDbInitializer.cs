@@ -24,10 +24,7 @@ namespace ComputerStoreWebApi.Data
                         ModifiedBy = 0,
                     });
                     context.SaveChanges();
-                }       
-
-                    
-                
+                }                     
             }
         }
     }
