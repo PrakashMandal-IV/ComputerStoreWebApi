@@ -39,6 +39,12 @@ namespace ComputerStoreWebApi.Controllers
             _AdminService.AddAdmin(admin);
             return Ok();
         }
+        [HttpPut("update-admin-by-id/{id}")]
+        public IActionResult UpdateAdminById(int id,[FromBody]AdminVM admin)
+        {
+            var updatedAdmin = _AdminService.UpdateAdminById(id, admin);
+            return Ok(updatedAdmin);
+        }
         
     }
 
