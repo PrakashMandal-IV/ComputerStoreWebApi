@@ -9,7 +9,7 @@
         public string LastName { get; set; }
         public string Email { get; set; }
         public string? ImageUrl { get; set; }
-        public int PhoneNumber { get; set; }
+        public long PhoneNumber { get; set; }
         public DateTime DateOfBirth { get; set; }    
     }
 }
