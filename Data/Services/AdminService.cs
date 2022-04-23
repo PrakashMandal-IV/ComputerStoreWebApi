@@ -27,5 +27,9 @@ namespace ComputerStoreWebApi.Data.Services
             _context.Admin.Add(_admin);
             _context.SaveChanges(); 
         }
+
+        public List<Admin> GetAdminList() => _context.Admin.ToList();
+
+        public Admin GetAdminById(int AdminId) => _context.Admin.FirstOrDefault(n => n.Id == AdminId);
     }
 }
