@@ -15,20 +15,23 @@ namespace ComputerStoreWebApi.Controllers
         {
             _AdminService = adminService;
         }
+
         //get all admin end point
         [HttpGet("get-all-admin")]
         public IActionResult GetAdminList()
         {
             var allAdmins = _AdminService.GetAdminList();
-            return Ok(allAdmins );
+            return Ok(allAdmins);
         }
+
         //get admin by id
-        [HttpGet("get-by-id-admin/{id]")]
+        [HttpGet("get-by-id-admin/{id}")]
         public IActionResult GetAdminById(int id)
         {
             var admin = _AdminService.GetAdminById(id);
             return Ok(admin);
         }
+
         //create new admin
         [HttpPost("add-book")]
         public IActionResult AddAdmin([FromBody] AdminVM admin)
