@@ -49,5 +49,11 @@ namespace ComputerStoreWebApi.Data.Services
             };
             return _admin;
         }
+        public void DeleteAdminById(int adminId)
+        {
+            var admin = _context.Admin.FirstOrDefault(n => n.Id == adminId);
+            _context.Admin.Remove(admin);
+            _context.SaveChanges();
+        }
     }
 }

@@ -33,7 +33,7 @@ namespace ComputerStoreWebApi.Controllers
         }
 
         //create new admin
-        [HttpPost("add-book")]
+        [HttpPost("add-Admin")]
         public IActionResult AddAdmin([FromBody] AdminVM admin)
         {
             _AdminService.AddAdmin(admin);
