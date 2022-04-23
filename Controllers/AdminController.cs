@@ -1,4 +1,6 @@
 using ComputerStoreWebApi.Data;
+using ComputerStoreWebApi.Data.Services;
+using ComputerStoreWebApi.Data.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ComputerStoreWebApi.Controllers
@@ -7,14 +9,18 @@ namespace ComputerStoreWebApi.Controllers
     [Route("[controller]")]
     public class AdminController : ControllerBase
     {
-        private int id = 0;    
-        private readonly AppDbContext _dbContext;
+        public AdminService _AdminService;
 
-        public AdminController(AppDbContext dbContext)
+        public AdminController(AdminService adminService)
         {
-            _dbContext = dbContext;
+            _AdminService = adminService;
         }
-       
+        [HttpPost("add-book")]
+        public IActionResult AddAdmin([FromBody] AdminVM admin)
+        {
+            _AdminService.AddAdmin(admin);
+            return Ok();
+        }
         
     }
 }
