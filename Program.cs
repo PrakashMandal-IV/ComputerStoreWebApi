@@ -1,4 +1,5 @@
 using ComputerStoreWebApi.Data;
+using ComputerStoreWebApi.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
 });
+builder.Services.AddTransient<AdminService>();
 
 //CORS POLICY
 var MyAllowSpecificOrigin = "_myAllowSpecificOrigin";

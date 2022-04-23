@@ -25,7 +25,7 @@ namespace ComputerStoreWebApi.Data.Services
                 DateOfBirth = DateTime.Now
             };
             _context.Admin.Add(_admin);
-            _context.SaveChanges();
+            _context.SaveChanges(); 
         }
     }
 }
