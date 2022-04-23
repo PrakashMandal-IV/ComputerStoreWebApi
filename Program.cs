@@ -37,6 +37,7 @@ if (app.Environment.IsDevelopment())
 }
 
 AppDbInitializer.Seed(app);
+
 app.UseCors(MyAllowSpecificOrigin);
 app.UseHttpsRedirection();
 

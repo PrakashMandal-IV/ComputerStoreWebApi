@@ -14,17 +14,7 @@ namespace ComputerStoreWebApi.Controllers
         {
             _dbContext = dbContext;
         }
-        [HttpGet(Name = "Admin")]
-        public IEnumerable<Admin> Get()
-        {
-            return Enumerable.Range(1, 1).Select(Index => new Admin
-            {
-                Id = id++,
-                FirstName = "Admin",
-                LastName = "Admin",
-                Password = "Admim"
-            });
-        }
+       
         
     }
 }
