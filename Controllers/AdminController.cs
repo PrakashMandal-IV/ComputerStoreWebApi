@@ -1,4 +1,6 @@
 using ComputerStoreWebApi.Data;
+using ComputerStoreWebApi.Data.Services;
+using ComputerStoreWebApi.Data.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ComputerStoreWebApi.Controllers
@@ -7,24 +9,49 @@ namespace ComputerStoreWebApi.Controllers
     [Route("[controller]")]
     public class AdminController : ControllerBase
     {
-        private int id = 0;    
-        private readonly AppDbContext _dbContext;
+        public AdminService _AdminService;
 
-        public AdminController(AppDbContext dbContext)
+        public AdminController(AdminService adminService)
         {
-            _dbContext = dbContext;
+            _AdminService = adminService;
         }
-        [HttpGet(Name = "Admin")]
-        public IEnumerable<Admin> Get()
+
+        //get all admin end point
+        [HttpGet("get-all-admin")]
+        public IActionResult GetAdminList()
         {
-            return Enumerable.Range(1, 1).Select(Index => new Admin
-            {
-                Id = id++,
-                FirstName = "Admin",
-                LastName = "Admin",
-                Password = "Admim"
-            });
+            var allAdmins = _AdminService.GetAdminList();
+            return Ok(allAdmins);
+        }
+
+        //get admin by id
+        [HttpGet("get-by-id-admin/{id}")]
+        public IActionResult GetAdminById(int id)
+        {
+            var admin = _AdminService.GetAdminById(id);
+            return Ok(admin);
+        }
+
+        //create new admin
+        [HttpPost("add-Admin")]
+        public IActionResult AddAdmin([FromBody] AdminVM admin)
+        {
+            _AdminService.AddAdmin(admin);
+            return Ok();
+        }
+        [HttpPut("update-admin-by-id/{id}")]
+        public IActionResult UpdateAdminById(int id,[FromBody]AdminVM admin)
+        {
+            var updatedAdmin = _AdminService.UpdateAdminById(id, admin);
+            return Ok(updatedAdmin);
+        }
+        [HttpDelete("delete-admin-by-id/{id}")]
+        public IActionResult DeleteAdminById(int id)
+        {
+            _AdminService.DeleteAdminById(id);
+            return Ok(_AdminService);
         }
         
     }
+
 }

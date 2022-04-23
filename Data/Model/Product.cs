@@ -1,7 +1,11 @@
-﻿namespace ComputerStoreWebApi.Data.Model
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ComputerStoreWebApi.Data.Model
 {
     public class Product
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -11,6 +15,7 @@
         public int InStock { get; set; }
         public int tagId { get; set; }
         public int CategoryId { get; set; }
+        [ForeignKey("AdminId")]
         public DateTime CreatedBy { get; set; }
         public int? CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
