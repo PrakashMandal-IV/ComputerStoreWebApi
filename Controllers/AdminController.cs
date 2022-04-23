@@ -45,6 +45,12 @@ namespace ComputerStoreWebApi.Controllers
             var updatedAdmin = _AdminService.UpdateAdminById(id, admin);
             return Ok(updatedAdmin);
         }
+        [HttpDelete("delete-admin-by-id/{id}")]
+        public IActionResult DeleteAdminById(int id)
+        {
+            _AdminService.DeleteAdminById(id);
+            return Ok(_AdminService);
+        }
         
     }
 
