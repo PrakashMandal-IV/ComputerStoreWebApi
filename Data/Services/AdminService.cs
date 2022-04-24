@@ -1,10 +1,12 @@
 ﻿using ComputerStoreWebApi.Data.Models;
 using ComputerStoreWebApi.Data.ViewModel;
+using ComputerStoreWebApi.Hash;
 
 namespace ComputerStoreWebApi.Data.Services
 {
     public class AdminService
     {
+        HashPass hash = new HashPass();
         private AppDbContext _context;
         public AdminService(AppDbContext context)
         {
@@ -12,11 +14,12 @@ namespace ComputerStoreWebApi.Data.Services
         }
          
         public void AddAdmin(AdminVM admin)
-        {
+        {      
+            string pass = hash.Hash_SHA1(admin.Password);
             var _admin = new Admin()
             {
                 UserName = admin.UserName,
-                Password = admin.Password,
+                Password = pass,
                 FirstName = admin.FirstName,
                 LastName = admin.LastName,
                 Email = admin.Email,
