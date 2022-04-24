@@ -17,7 +17,7 @@ namespace ComputerStoreWebApi.Hash
 
                 foreach (byte b in hash)
                 {
-                    sb.Append(b.ToString("X2"));
+                    sb.Append(b.ToString("x2"));
                 }
 
                 return sb.ToString();
