@@ -37,7 +37,6 @@ namespace ComputerStoreWebApi.Data.Services
 
         public Admin UpdateAdminById(int adminId, AdminVM admin )
         {
-
             var _admin = _context.Admin.FirstOrDefault(n => n.Id == adminId);
             string pass = hash.Hash_SHA1(admin.Password);
             if (_admin != null)
