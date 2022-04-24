@@ -37,11 +37,13 @@ namespace ComputerStoreWebApi.Data.Services
 
         public Admin UpdateAdminById(int adminId, AdminVM admin )
         {
+
             var _admin = _context.Admin.FirstOrDefault(n => n.Id == adminId);
-            if(_admin != null)
+            string pass = hash.Hash_SHA1(admin.Password);
+            if (_admin != null)
             {
                 _admin.UserName = admin.UserName;
-                _admin.Password = admin.Password;
+                _admin.Password = pass;
                 _admin.FirstName = admin.FirstName;
                 _admin.LastName = admin.LastName;
                 _admin.Email = admin.Email;
