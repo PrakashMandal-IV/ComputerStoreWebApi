@@ -22,9 +22,9 @@ namespace ComputerStoreWebApi.Data
                         Password = hash.Hash_SHA1("Admin"),
                         Email = "prakashmandal.iv@gmail.com",
                         PhoneNumber = 0000000000,                      
-                    }); ;
+                    }); 
                     context.SaveChanges();
-                }                     
+                }
             }
         }
     }
