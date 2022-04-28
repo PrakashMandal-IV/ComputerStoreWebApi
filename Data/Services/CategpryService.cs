@@ -20,5 +20,9 @@ namespace ComputerStoreWebApi.Data.Services
             _context.Category.Add(_category);
             _context.SaveChanges();
         }
+
+        public List<Category> GetCategoryList() => _context.Category.ToList();
+        public Category GetCategoryById(int CategoryId) => _context.Category.FirstOrDefault(n => n.Id == CategoryId);
+        
     }
 }

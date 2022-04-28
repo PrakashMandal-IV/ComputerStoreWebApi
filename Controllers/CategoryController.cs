@@ -1,12 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ComputerStoreWebApi.Data.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ComputerStoreWebApi.Controllers
 {
+    [ApiController]
+    [Route("[Controller]")]
     public class CategoryController : Controller
     {
-        public IActionResult Index()
+        public CategpryService _categoryService;
+        public CategoryController(CategpryService categpryService)
         {
-            return View();
+            _categoryService = categpryService;
+        }
+        [HttpGet("get-all-category")]
+        public IActionResult GetCategoryList()
+        {
+            var allCategory = _categoryService.GetCategoryList();
+                return Ok(allCategory);
         }
     }
 }
