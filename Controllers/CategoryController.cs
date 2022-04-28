@@ -1,4 +1,5 @@
 ﻿using ComputerStoreWebApi.Data.Services;
+using ComputerStoreWebApi.Data.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ComputerStoreWebApi.Controllers
@@ -17,6 +18,12 @@ namespace ComputerStoreWebApi.Controllers
         {
             var allCategory = _categoryService.GetCategoryList();
                 return Ok(allCategory);
+        }
+        [HttpPost("add-category")]
+        public IActionResult AddCategory([FromBody] CategoryVM category)
+        {
+            _categoryService.AddCategory(category); 
+            return Ok();
         }
     }
 }
