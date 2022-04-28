@@ -1,5 +1,6 @@
 ﻿
 
+using ComputerStoreWebApi.Data.Model;
 using ComputerStoreWebApi.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,5 +13,6 @@ namespace ComputerStoreWebApi.Data
 
         }
         public DbSet<Admin> Admin { get; set; }
+        public DBSet<Category> Category { get; set; }
     }
 }
