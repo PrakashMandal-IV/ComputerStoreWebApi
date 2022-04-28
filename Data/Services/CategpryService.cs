@@ -26,13 +26,19 @@ namespace ComputerStoreWebApi.Data.Services
         public Category UpdateCategory(int categoryId, CategoryVM category)
         {
             var _category = _context.Category.FirstOrDefault(n => n.Id == categoryId);
-            if (_category == null)
+            if (_category != null)
             {
                 _category.Name = category.Name;
                 _category.ModifiedAt = DateTime.Now;
                 _context.SaveChanges();
             }
             return _category;
+        }
+        public void DeleteCategory(int Id)
+        {
+            var _category =  _context.Category.FirstOrDefault(n =>n.Id == Id);      
+                _context.Category.Remove(_category);
+                _context.SaveChanges();                 
         }
         
     }
