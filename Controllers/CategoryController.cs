@@ -25,7 +25,7 @@ namespace ComputerStoreWebApi.Controllers
             _categoryService.AddCategory(category); 
             return Ok();
         }
-        [HttpPost("update-category/{id}")]
+        [HttpPut("update-category/{id}")]
         public async Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryVM category)
         {
             var updateCategory = _categoryService.UpdateCategory(id, category);
