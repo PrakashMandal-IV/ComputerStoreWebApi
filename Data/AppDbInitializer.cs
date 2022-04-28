@@ -1,6 +1,4 @@
-﻿
-using ComputerStoreWebApi.Data.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using ComputerStoreWebApi.Data.Model;
 using ComputerStoreWebApi.Hash;
 namespace ComputerStoreWebApi.Data
 {

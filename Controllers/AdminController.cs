@@ -1,4 +1,3 @@
-using ComputerStoreWebApi.Data;
 using ComputerStoreWebApi.Data.Services;
 using ComputerStoreWebApi.Data.ViewModel;
 using Microsoft.AspNetCore.Mvc;

@@ -17,6 +17,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
 });
 builder.Services.AddTransient<AdminService>();
+builder.Services.AddTransient<CategpryService>();
 
 //CORS POLICY
 var MyAllowSpecificOrigin = "_myAllowSpecificOrigin";
