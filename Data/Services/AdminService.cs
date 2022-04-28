@@ -1,4 +1,4 @@
-﻿using ComputerStoreWebApi.Data.Models;
+﻿ using ComputerStoreWebApi.Data.Model;
 using ComputerStoreWebApi.Data.ViewModel;
 using ComputerStoreWebApi.Hash;
 

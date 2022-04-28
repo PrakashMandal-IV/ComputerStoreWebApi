@@ -1,4 +1,4 @@
-﻿namespace ComputerStoreWebApi.Data.Models
+﻿namespace ComputerStoreWebApi.Data.Model
 {
     public class Admin
     {
