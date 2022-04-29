@@ -10,11 +10,11 @@ namespace ComputerStoreWebApi.Data.Services
         {
             _context = context;
         }
-        public void AddCategory(CategoryVM categpry)
+        public void AddCategory(CategoryVM category)
         {
             var _category = new Category()
             {
-                Name = categpry.Name,
+                Name = category.Name,
                 CreatedAt = DateTime.Now,
             };
             _context.Category.Add(_category);
