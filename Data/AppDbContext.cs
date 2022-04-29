@@ -11,12 +11,16 @@ namespace ComputerStoreWebApi.Data
         {
 
         }
-        protected override void onModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductCategory>()
                 .HasOne(p => p.Product)
-                .WithMany(c => c.Prod)
-                
+                .WithMany(c => c.productCategory)
+                .HasForeignKey(i => i.ProductId);
+            modelBuilder.Entity<ProductCategory>()
+                .HasOne(p => p.Category)
+                .WithMany(c => c.productCategory)
+                .HasForeignKey(i => i.CategoryId);               
         }
         public DbSet<Admin> Admin { get; set; }
         public DbSet<Category> Category { get; set; }
