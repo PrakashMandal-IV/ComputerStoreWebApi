@@ -11,6 +11,13 @@ namespace ComputerStoreWebApi.Data
         {
 
         }
+        protected override void onModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProductCategory>()
+                .HasOne(p => p.Product)
+                .WithMany(c => c.Prod)
+                
+        }
         public DbSet<Admin> Admin { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Tag> Tag { get; set; }
