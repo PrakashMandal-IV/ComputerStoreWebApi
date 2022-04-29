@@ -22,5 +22,6 @@ namespace ComputerStoreWebApi.Data.Services
             _context.SaveChanges();
         }
         public Tag GetTagByName(string name) => _context.Tag.FirstOrDefault(t => t.Name == name);
+
     }
 }

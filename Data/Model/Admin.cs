@@ -10,6 +10,9 @@
         public string Email { get; set; }
         public string? ImageUrl { get; set; }
         public long PhoneNumber { get; set; }
-        public DateTime DateOfBirth { get; set; }    
+        public DateTime DateOfBirth { get; set; }  
+
+
+        public List<Product> Products { get; set; }
     }
 }
