@@ -9,6 +9,7 @@
         public decimal NewPrice { get; set; }
         public int InStock { get; set; }
         public int CreatedBy { get; set; }
+        public DateTime CreatedAt { get; set; }
         public List<int> CategoryId { get; set; }
     }
 }
