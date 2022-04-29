@@ -28,13 +28,20 @@ namespace ComputerStoreWebApi.Controllers
         [HttpPut("update-category/{id}")]
         public async Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryVM category)
         {
-            var updateCategory = _categoryService.UpdateCategory(id, category);
+            await Task.Run(() =>
+            {
+                var updateCategory = _categoryService.UpdateCategory(id, category);
+                return Ok(updateCategory);
+            });
             return Ok();
         }
         [HttpDelete("delete-category/{id}")]
         public async Task<IActionResult> deletecategory(int id)
         {
-            _categoryService.DeleteCategory(id);
+            await Task.Run(() =>
+            {
+                _categoryService.DeleteCategory(id);
+            });
             return Ok();
         }
     }
