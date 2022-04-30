@@ -43,7 +43,7 @@ namespace ComputerStoreWebApi.Data.Services
                     ProductId = id,
                     TagId = id,
                 };
-                _context.ProductTag.Add(productTag);
+                _context.ProductTags.Add(productTag);
                 _context.SaveChanges();
             }
 

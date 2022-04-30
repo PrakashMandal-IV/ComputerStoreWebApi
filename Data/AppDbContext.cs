@@ -27,5 +27,6 @@ namespace ComputerStoreWebApi.Data
         public DbSet<Tag> Tag { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<ProductCategory> ProductCategory { get; set; }
+        public DbSet<ProductTag>   ProductTags { get; set; }
     }
 }
