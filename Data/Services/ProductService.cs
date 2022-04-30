@@ -36,6 +36,16 @@ namespace ComputerStoreWebApi.Data.Services
                 _context.ProductCategory.Add(_productCategory);
                 _context.SaveChanges();
             }
+             foreach(var id in product.TagId)
+            {
+                var productTag = new ProductTag()
+                {
+                    ProductId = id,
+                    TagId = id,
+                };
+                _context.ProductTag.Add(productTag);
+                _context.SaveChanges();
+            }
 
         }
     }

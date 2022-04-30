@@ -11,5 +11,6 @@
         public int CreatedBy { get; set; }
         public DateTime CreatedAt { get; set; }
         public List<int> CategoryId { get; set; }
+        public List<int> TagId { get; set; }
     }
 }
