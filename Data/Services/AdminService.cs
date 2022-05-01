@@ -6,7 +6,7 @@ namespace ComputerStoreWebApi.Data.Services
 {
     public class AdminService
     {
-        HashPass hash = new HashPass();
+        private HashPass hash = new();
         private AppDbContext _context;
         public AdminService(AppDbContext context)
         {
@@ -18,7 +18,7 @@ namespace ComputerStoreWebApi.Data.Services
             string pass = hash.Hash(admin.Password);
             var _admin = new Admin()
             {
-                UserName = admin.UserName,
+               
                 Password = pass,
                 FirstName = admin.FirstName,
                 LastName = admin.LastName,
@@ -40,8 +40,7 @@ namespace ComputerStoreWebApi.Data.Services
             var _admin = _context.Admin.FirstOrDefault(n => n.Id == adminId);
             string pass = hash.Hash(admin.Password);
             if (_admin != null)
-            {
-                _admin.UserName = admin.UserName;
+            {             
                 _admin.Password = pass;
                 _admin.FirstName = admin.FirstName;
                 _admin.LastName = admin.LastName;
