@@ -15,7 +15,7 @@ namespace ComputerStoreWebApi.Data
         {
             modelBuilder.Entity<ProductCategory>()
                 .HasOne(p => p.Product)
-                .WithMany(c => c.productCategory)
+                .WithMany(c => c.ProductCategory)
                 .HasForeignKey(i => i.ProductId);
             modelBuilder.Entity<ProductCategory>()
                 .HasOne(p => p.Category)
@@ -27,7 +27,7 @@ namespace ComputerStoreWebApi.Data
                 .HasForeignKey(i => i.TagId);
             modelBuilder.Entity<ProductTag>()
                 .HasOne(p => p.Product)
-                .WithMany(c => c.productTags)
+                .WithMany(c => c.ProductTags)
                 .HasForeignKey(i => i.ProductId);
         }
         public DbSet<Admin> Admin { get; set; }

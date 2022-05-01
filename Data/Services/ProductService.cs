@@ -20,8 +20,8 @@ namespace ComputerStoreWebApi.Data.Services
                 ImageUrl = product.ImageUrl,
                 Price = product.Price,
                 NewPrice = product.NewPrice,
-                InStock = product.InStock,
-                CreatedBy = product.CreatedBy,
+                InStock = product.InStock,  
+                CreatorId = product.CreatorId,
                 CreatedAt = DateTime.Now,              
             };
             _context.Product.Add(_product);
@@ -30,7 +30,7 @@ namespace ComputerStoreWebApi.Data.Services
             {
                 var _productCategory = new ProductCategory()
                 {
-                    ProductId = id, 
+                    ProductId = _product.Id,
                     CategoryId = id,
                 };
                 _context.ProductCategory.Add(_productCategory);
@@ -40,7 +40,7 @@ namespace ComputerStoreWebApi.Data.Services
             {
                 var productTag = new ProductTag()
                 {
-                    ProductId = id,
+                    ProductId = _product.Id,
                     TagId = id,
                 };
                 _context.ProductTags.Add(productTag);
