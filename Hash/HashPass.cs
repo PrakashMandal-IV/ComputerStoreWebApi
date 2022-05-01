@@ -8,20 +8,21 @@ namespace ComputerStoreWebApi.Hash
 {
     public class HashPass
     {
-        public string Hash_SHA1(string input)
+        public string Hash(string input)
         {
-            using (SHA1Managed sha1 = new SHA1Managed())
+            StringBuilder Sb = new StringBuilder();
+
+            using (SHA256 hash = SHA256Managed.Create())
             {
-                var hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
-                var sb = new StringBuilder(hash.Length * 2);
+                Encoding enc = Encoding.UTF8;
+                Byte[] result = hash.ComputeHash(enc.GetBytes(input));
 
-                foreach (byte b in hash)
-                {
-                    sb.Append(b.ToString("x2"));
-                }
-
-                return sb.ToString();
+                foreach (Byte b in result)
+                    Sb.Append(b.ToString("x2"));
             }
+
+            return Sb.ToString();
+        }
         }
     }
-}
+

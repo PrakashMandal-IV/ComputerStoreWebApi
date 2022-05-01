@@ -15,7 +15,7 @@ namespace ComputerStoreWebApi.Data.Services
          
         public void AddAdmin(AdminVM admin)
         {      
-            string pass = hash.Hash_SHA1(admin.Password);
+            string pass = hash.Hash(admin.Password);
             var _admin = new Admin()
             {
                 UserName = admin.UserName,
@@ -38,7 +38,7 @@ namespace ComputerStoreWebApi.Data.Services
         public Admin UpdateAdminById(int adminId, AdminVM admin )
         {
             var _admin = _context.Admin.FirstOrDefault(n => n.Id == adminId);
-            string pass = hash.Hash_SHA1(admin.Password);
+            string pass = hash.Hash(admin.Password);
             if (_admin != null)
             {
                 _admin.UserName = admin.UserName;

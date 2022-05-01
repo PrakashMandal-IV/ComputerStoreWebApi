@@ -17,7 +17,7 @@ namespace ComputerStoreWebApi.Data
                     {
                         
                         UserName = "Admin",
-                        Password = hash.Hash_SHA1("Admin"),
+                        Password = hash.Hash("Admin"),
                         Email = "prakashmandal.iv@gmail.com",
                         PhoneNumber = 0000000000,                      
                     }); 
