@@ -10,5 +10,6 @@
         public DateTime? ModifiedAt { get; set; }       
         public int? DeletedBy { get; set; }
         public DateTime? DeletedAt { get; set; }
+        public List<ProductCategory> productCategory { get; set; }
     }
 }

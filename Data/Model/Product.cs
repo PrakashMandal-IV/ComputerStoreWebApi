@@ -9,16 +9,18 @@ namespace ComputerStoreWebApi.Data.Model
         public string Name { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
-        public Decimal? Price { get; set; }
-        public decimal? NewPrice { get; set; }
-        public int InStock { get; set; }
-        public int tagId { get; set; }
-        public int CategoryId { get; set; }        
-        public DateTime CreatedBy { get; set; }
-        public int? CreatedAt { get; set; }
-        public DateTime ModifiedAt { get; set; }
-        public int ModifiedBy { get; set; }
-        public DateTime DeletedAt { get; set; }
-        public int DeletedBy { get; set; }
+        public int? Price { get; set; }
+        public int? NewPrice { get; set; }
+        public int InStock { get; set; }            
+        public int? CreatorId { get; set; }
+        public Admin Creator { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public int? ModifiedBy { get; set; }
+        public DateTime? ModifiedAt { get; set; }
+        public int? DeletedBy { get; set; }
+        public DateTime? DeletedAt { get; set; }
+
+        public List<ProductCategory> ProductCategory { get; set; }
+        public List<ProductTag> ProductTags { get; set; }
     }
 }

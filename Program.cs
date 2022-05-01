@@ -19,6 +19,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddTransient<AdminService>();
 builder.Services.AddTransient<CategpryService>();
 builder.Services.AddTransient<TagService>();
+builder.Services.AddTransient<ProductService>();
 
 //CORS POLICY
 var MyAllowSpecificOrigin = "_myAllowSpecificOrigin";
