@@ -21,6 +21,6 @@ namespace ComputerStoreWebApi.Data.Model
         public DateTime? DeletedAt { get; set; }
 
         public List<ProductCategory> productCategory { get; set; }
-        public List<Tag> Tag { get; set; }
+        public List<ProductTag> productTags { get; set; }
     }
 }

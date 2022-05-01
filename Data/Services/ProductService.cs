@@ -26,7 +26,7 @@ namespace ComputerStoreWebApi.Data.Services
             };
             _context.Product.Add(_product);
             _context.SaveChanges();
-             foreach(var id in product.CategoryId)
+            foreach(var id in product.CategoryId)
             {
                 var _productCategory = new ProductCategory()
                 {
@@ -46,6 +46,8 @@ namespace ComputerStoreWebApi.Data.Services
                 _context.ProductTags.Add(productTag);
                 _context.SaveChanges();
             }
+
+
 
         }
     }
