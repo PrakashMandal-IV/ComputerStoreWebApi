@@ -95,5 +95,17 @@ namespace ComputerStoreWebApi.Data.Services
             };
             return _product;
         }
+        public Product UpdateProductImage(int id, ProductVMImage product)
+        {
+            var _product = _context.Product.FirstOrDefault(t => t.Id == id);
+            if (_product != null)
+            {
+                _product.ImageUrl = product.ImageUrl;
+                _product.ModifiedAt = DateTime.Now;
+                _context.SaveChanges();
+            };
+            return _product;
+        }
+
     }
 }

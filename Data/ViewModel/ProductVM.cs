@@ -15,11 +15,14 @@
     }
     public class ProductVMbyName
     {
-        public string Name { get; set; } = string.Empty;
-        public DateTime ModifiedAt { get; set; }
+        public string Name { get; set; } = string.Empty;      
     }
     public class ProductVMbyDescription
     {
         public string Discription { get; set; } = string.Empty;        
+    }
+    public class ProductVMImage
+    {
+        public string ImageUrl { get; set; } = string.Empty;
     }
 }
