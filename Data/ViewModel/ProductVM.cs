@@ -18,4 +18,8 @@
         public string Name { get; set; } = string.Empty;
         public DateTime ModifiedAt { get; set; }
     }
+    public class ProductVMbyDescription
+    {
+        public string Discription { get; set; } = string.Empty;        
+    }
 }
