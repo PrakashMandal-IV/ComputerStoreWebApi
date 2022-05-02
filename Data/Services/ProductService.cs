@@ -10,7 +10,7 @@ namespace ComputerStoreWebApi.Data.Services
         {
             _context = context;
         }
-
+        //Add product to the store
         public void AddProduct(ProductVM product)
         {
             var _product = new Product()
@@ -70,6 +70,19 @@ namespace ComputerStoreWebApi.Data.Services
 
 
 
+        }
+
+        //update product
+        public Product UpdateProductName(int id ,ProductVMbyName product)
+        {
+            var _product = _context.Product.FirstOrDefault(t => t.Id == id);
+            if(_product != null)
+            {
+                _product.Name = product.Name;
+                _product.ModifiedAt = DateTime.Now;
+                _context.SaveChanges();
+            };
+            return _product;           
         }
     }
 }

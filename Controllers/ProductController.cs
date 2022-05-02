@@ -19,5 +19,12 @@ namespace ComputerStoreWebApi.Controllers
             _productService.AddProduct(product);
             return Ok();
         }
+        [HttpPut("update-product-name/{id}")]
+        public async Task<IActionResult> UpdateProduct(int id,[FromBody] ProductVMbyName product)
+        {
+            var _response = _productService.UpdateProductName(id,product);
+            return Ok(_response);
+
+        }
     }
 }

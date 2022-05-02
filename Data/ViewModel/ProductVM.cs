@@ -13,4 +13,9 @@
         public List<int> CategoryId { get; set; }
         public List<string> TagName { get; set; }
     }
+    public class ProductVMbyName
+    {
+        public string Name { get; set; } = string.Empty;
+        public DateTime ModifiedAt { get; set; }
+    }
 }
