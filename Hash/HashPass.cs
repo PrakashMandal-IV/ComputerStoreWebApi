@@ -16,7 +16,7 @@ namespace ComputerStoreWebApi.Hash
                 Encoding enc = Encoding.UTF8;
                 Byte[] result = hash.ComputeHash(enc.GetBytes(input));
                 foreach (Byte b in result)
-                    Sb.Append(b.ToString("x2"));
+                    Sb.Append(b.ToString("x4"));
             }
             return Sb.ToString();
         }
