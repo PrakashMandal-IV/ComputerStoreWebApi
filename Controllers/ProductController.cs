@@ -35,12 +35,22 @@ namespace ComputerStoreWebApi.Controllers
             });
             return Ok();           
         }
-        [HttpPut("update-product-description/{id}")]
+        [HttpPut("update-product-image/{id}")]
         public async Task<IActionResult> UpdateProductImage(int id, [FromBody] ProductVMImage product)
         {
             await Task.Run(() =>
             {
                 var _response = _productService.UpdateProductImage(id, product);
+                return Ok(_response);
+            });
+            return Ok();
+        }
+        [HttpPut("update-product-price/{id}")]
+        public async Task<IActionResult> UpdateProductprice(int id, [FromBody] ProductVMPrice product)
+        {
+            await Task.Run(() =>
+            {
+                var _response = _productService.UpdateProductPrice(id, product);
                 return Ok(_response);
             });
             return Ok();

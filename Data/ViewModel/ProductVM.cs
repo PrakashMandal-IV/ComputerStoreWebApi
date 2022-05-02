@@ -25,4 +25,8 @@
     {
         public string ImageUrl { get; set; } = string.Empty;
     }
+    public class ProductVMPrice
+    {
+        public int NewPrice { get; set; }
+    }
 }
