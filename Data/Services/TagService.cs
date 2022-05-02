@@ -5,7 +5,9 @@ namespace ComputerStoreWebApi.Data.Services
 {
     public class TagService
     {
+#pragma warning disable IDE1006 // Naming Styles
         public AppDbContext _context { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
         public TagService(AppDbContext context)
         {
             _context = context;
@@ -21,7 +23,7 @@ namespace ComputerStoreWebApi.Data.Services
             _context.Tag.Add(_tag);
             _context.SaveChanges();
         }
-        public Tag GetTagByName(string name) => _context.Tag.FirstOrDefault(t => t.Name == name);
+        public Tag? GetTagByName(string name) => _context.Tag.FirstOrDefault(t => t.Name == name);
 
     }
 }

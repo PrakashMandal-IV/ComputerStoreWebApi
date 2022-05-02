@@ -2,16 +2,16 @@
 {
     public class ProductVM
     {       
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string ImageUrl { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string ImageUrl { get; set; } = string.Empty;
         public int Price { get; set; }
         public int NewPrice { get; set; }
         public int InStock { get; set; }
         public int? CreatorId { get; set; }
         public DateTime CreatedAt { get; set; }
-        public List<int> CategoryId { get; set; }
-        public List<string> TagName { get; set; }
+        public List<int> CategoryId { get; set; } = default!;
+        public List<string> TagName { get; set; } = default!;
     }
     public class ProductVMbyName
     {

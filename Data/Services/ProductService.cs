@@ -5,7 +5,7 @@ namespace ComputerStoreWebApi.Data.Services
 {
     public class ProductService
     {
-        private AppDbContext _context;
+        private readonly AppDbContext _context;
         public ProductService(AppDbContext context)
         {
             _context = context;
@@ -73,7 +73,7 @@ namespace ComputerStoreWebApi.Data.Services
         }
 
         //update product
-        public Product UpdateProductName(int id ,ProductVMbyName product)
+        public Product? UpdateProductName(int id ,ProductVMbyName product)
         {
             var _product = _context.Product.FirstOrDefault(t => t.Id == id);
             if(_product != null)
@@ -84,7 +84,7 @@ namespace ComputerStoreWebApi.Data.Services
             };
             return _product;           
         }
-        public Product UpdateProductDescription(int id, ProductVMbyDescription product)
+        public Product? UpdateProductDescription(int id, ProductVMbyDescription product)
         {
             var _product = _context.Product.FirstOrDefault(t => t.Id == id);
             if (_product != null)
@@ -95,7 +95,7 @@ namespace ComputerStoreWebApi.Data.Services
             };
             return _product;
         }
-        public Product UpdateProductImage(int id, ProductVMImage product)
+        public Product? UpdateProductImage(int id, ProductVMImage product)
         {
             var _product = _context.Product.FirstOrDefault(t => t.Id == id);
             if (_product != null)
@@ -106,7 +106,7 @@ namespace ComputerStoreWebApi.Data.Services
             };
             return _product;
         }
-        public Product UpdateProductPrice(int id, ProductVMPrice product)
+        public Product? UpdateProductPrice(int id, ProductVMPrice product)
         {
             var _product = _context.Product.FirstOrDefault(t => t.Id == id);
             if (_product != null)

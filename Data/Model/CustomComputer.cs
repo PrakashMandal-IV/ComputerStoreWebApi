@@ -3,7 +3,7 @@
     public class CustomComputer
     {
         public int Id { get; set; }
-        public string Name { get; set; } = default!;
+        public string Name { get; set; } = string.Empty;
         public int AddedProduct { get; set; }
         public float TotalPrice { get; set; }
         public DateTime CreatedBy { get; set; }

@@ -36,7 +36,7 @@ namespace ComputerStoreWebApi.Controllers
             return Ok();
         }
         [HttpDelete("delete-category/{id}")]
-        public async Task<IActionResult> deletecategory(int id)
+        public async Task<IActionResult> Deletecategory(int id)
         {
             await Task.Run(() =>
             {

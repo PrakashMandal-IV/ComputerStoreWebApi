@@ -5,7 +5,7 @@ namespace ComputerStoreWebApi.Data.Services
 {
     public class CategpryService
     {
-        private AppDbContext _context;
+        private readonly AppDbContext _context;
         public CategpryService(AppDbContext context)
         {
             _context = context;
@@ -22,8 +22,8 @@ namespace ComputerStoreWebApi.Data.Services
         }
 
         public List<Category> GetCategoryList() => _context.Category.ToList();
-        public Category GetCategoryById(int CategoryId) => _context.Category.FirstOrDefault(n => n.Id == CategoryId);
-        public Category UpdateCategory(int categoryId, CategoryVM category)
+        public Category? GetCategoryById(int CategoryId) => _context.Category.FirstOrDefault(n => n.Id == CategoryId);
+        public Category? UpdateCategory(int categoryId, CategoryVM category)
         {
             var _category = _context.Category.FirstOrDefault(n => n.Id == categoryId);
             if (_category != null)
@@ -37,7 +37,7 @@ namespace ComputerStoreWebApi.Data.Services
         public void DeleteCategory(int Id)
         {
             var _category =  _context.Category.FirstOrDefault(n =>n.Id == Id);      
-                _context.Category.Remove(_category);
+                _context.Category.Remove(_category=default!);
                 _context.SaveChanges();                 
         }
         
