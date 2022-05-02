@@ -36,15 +36,36 @@ namespace ComputerStoreWebApi.Data.Services
                 _context.ProductCategory.Add(_productCategory);
                 _context.SaveChanges();
             }
-             foreach(var id in product.TagId)
+             foreach(var name in product.TagName)
             {
-                var productTag = new ProductTag()
+                var _tag = _context.Tag.FirstOrDefault(t => t.Name == name);
+                if (_tag ==null)
                 {
-                    ProductId = _product.Id,
-                    TagId = id,
-                };
-                _context.ProductTags.Add(productTag);
-                _context.SaveChanges();
+                    var newtag = new Tag()
+                    {
+                        Name = name,
+                        CreatedAt = DateTime.Now,
+                    };
+                    _context.Tag.Add(newtag);
+                    _context.SaveChanges();
+                    var productTag = new ProductTag()
+                    {
+                        ProductId = _product.Id,
+                        TagId = newtag.Id,
+                    };
+                    _context.ProductTags.Add(productTag);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    var productTag = new ProductTag()
+                    {
+                        ProductId = _product.Id,
+                        TagId = _tag.Id,
+                    };
+                    _context.ProductTags.Add(productTag);
+                    _context.SaveChanges();
+                }
             }
 
 
