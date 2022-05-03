@@ -44,5 +44,11 @@ namespace ComputerStoreWebApi.Controllers
             });
             return Ok();
         }
+        [HttpGet("get-product-by-category/{id}")]
+        public IActionResult GetProductByCategory(int id)
+        {
+            var product = _categoryService.GetProductByCategory(id);
+            return Ok(product);
+        }
     }
 }
