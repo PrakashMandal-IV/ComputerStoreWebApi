@@ -26,5 +26,11 @@ namespace ComputerStoreWebApi.Controllers
             var tag = _tagService.GetTagByName(name);
             return Ok(tag);
         }
+        [HttpGet("search-product-by-tag/{name}")]
+        public IActionResult GetProductByTag(string name)
+        {
+            var _response = _tagService.GetProductVM(name);
+            return Ok(_response);
+        }
     }
 }

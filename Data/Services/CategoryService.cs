@@ -3,10 +3,10 @@ using ComputerStoreWebApi.Data.ViewModel;
 
 namespace ComputerStoreWebApi.Data.Services
 {
-    public class CategpryService
+    public class CategoryService
     {
-        private AppDbContext _context;
-        public CategpryService(AppDbContext context)
+        private readonly AppDbContext _context;
+        public CategoryService(AppDbContext context)
         {
             _context = context;
         }
@@ -22,8 +22,8 @@ namespace ComputerStoreWebApi.Data.Services
         }
 
         public List<Category> GetCategoryList() => _context.Category.ToList();
-        public Category GetCategoryById(int CategoryId) => _context.Category.FirstOrDefault(n => n.Id == CategoryId);
-        public Category UpdateCategory(int categoryId, CategoryVM category)
+        public Category? GetCategoryById(int CategoryId) => _context.Category.FirstOrDefault(n => n.Id == CategoryId);
+        public Category? UpdateCategory(int categoryId, CategoryVM category)
         {
             var _category = _context.Category.FirstOrDefault(n => n.Id == categoryId);
             if (_category != null)
@@ -37,9 +37,27 @@ namespace ComputerStoreWebApi.Data.Services
         public void DeleteCategory(int Id)
         {
             var _category =  _context.Category.FirstOrDefault(n =>n.Id == Id);      
-                _context.Category.Remove(_category);
+                _context.Category.Remove(_category=default!);
                 _context.SaveChanges();                 
         }
-        
+        public CategoryWithProductVM? GetProductByCategory(int CategoryId)
+        {
+            var _category = _context.Category.Where(n => n.Id == CategoryId).Select(n => new CategoryWithProductVM()
+            {
+                Name = n.Name,
+                Product = n.ProductCategory.Select(c => new ListProductVM()
+                {              
+                    Name = c.Product.Name,
+                    Description = c.Product.Description,
+                    ImageUrl = c.Product.ImageUrl,
+                    Price = c.Product.Price,
+                    NewPrice = c.Product.NewPrice,
+
+                   
+                }).ToList(),
+            }).FirstOrDefault();
+            return _category;
+        }
+
     }
 }

@@ -2,7 +2,12 @@
 {
     public class CategoryVM
     {
-        public string  Name { get; set; }
+        public string  Name { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
+    }
+    public class CategoryWithProductVM
+    {
+        public string Name { get; set; } = string.Empty;
+        public List<ListProductVM> Product { get; set; } = default!;
     }
 }

@@ -6,8 +6,8 @@ namespace ComputerStoreWebApi.Data.Services
 {
     public class AdminService
     {
-        private HashPass hash = new();
-        private AppDbContext _context;
+        private readonly HashPass hash = new();
+        private readonly AppDbContext _context;
         public AdminService(AppDbContext context)
         {
             _context = context;
@@ -33,9 +33,9 @@ namespace ComputerStoreWebApi.Data.Services
 
         public List<Admin> GetAdminList() => _context.Admin.ToList();
 
-        public Admin GetAdminById(int AdminId) => _context.Admin.FirstOrDefault(n => n.Id == AdminId);
+        public Admin? GetAdminById(int AdminId) => _context.Admin.FirstOrDefault(n => n.Id == AdminId);
 
-        public Admin UpdateAdminById(int adminId, AdminVM admin )
+        public Admin? UpdateAdminById(int adminId, AdminVM admin )
         {
             var _admin = _context.Admin.FirstOrDefault(n => n.Id == adminId);
             string pass = hash.Hash(admin.Password);
@@ -55,7 +55,7 @@ namespace ComputerStoreWebApi.Data.Services
         public void DeleteAdminById(int adminId)
         {
             var admin = _context.Admin.FirstOrDefault(n => n.Id == adminId);
-            _context.Admin.Remove(admin);
+            _context.Admin.Remove(admin=default!);
             _context.SaveChanges();
         }
     }

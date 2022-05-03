@@ -8,8 +8,8 @@ namespace ComputerStoreWebApi.Controllers
     [Route("[Controller]")]
     public class CategoryController : Controller
     {
-        public CategpryService _categoryService;
-        public CategoryController(CategpryService categpryService)
+        public CategoryService _categoryService;
+        public CategoryController(CategoryService categpryService)
         {
             _categoryService = categpryService;
         }
@@ -36,13 +36,19 @@ namespace ComputerStoreWebApi.Controllers
             return Ok();
         }
         [HttpDelete("delete-category/{id}")]
-        public async Task<IActionResult> deletecategory(int id)
+        public async Task<IActionResult> Deletecategory(int id)
         {
             await Task.Run(() =>
             {
                 _categoryService.DeleteCategory(id);
             });
             return Ok();
+        }
+        [HttpGet("get-product-by-category/{id}")]
+        public IActionResult GetProductByCategory(int id)
+        {
+            var product = _categoryService.GetProductByCategory(id);
+            return Ok(product);
         }
     }
 }

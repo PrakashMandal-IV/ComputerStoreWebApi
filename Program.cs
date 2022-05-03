@@ -17,7 +17,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
 });
 builder.Services.AddTransient<AdminService>();
-builder.Services.AddTransient<CategpryService>();
+builder.Services.AddTransient<CategoryService>();
 builder.Services.AddTransient<TagService>();
 builder.Services.AddTransient<ProductService>();
 
@@ -25,7 +25,7 @@ builder.Services.AddTransient<ProductService>();
 var MyAllowSpecificOrigin = "_myAllowSpecificOrigin";
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: MyAllowSpecificOrigin,
+    options.AddPolicy(name: MyAllowSpecificOrigin, 
         builder =>
     {
         builder.WithOrigins("http://localhost:8080");
