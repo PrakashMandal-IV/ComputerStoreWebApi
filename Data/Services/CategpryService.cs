@@ -40,6 +40,24 @@ namespace ComputerStoreWebApi.Data.Services
                 _context.Category.Remove(_category=default!);
                 _context.SaveChanges();                 
         }
-        
+        public CategoryWithBooksVM GetProductByCategory(int CategoryId)
+        {
+            var _category = _context.Category.Where(n => n.Id == CategoryId).Select(n => new CategoryWithBooksVM()
+            {
+                Name = n.Name,
+                Books = n.ProductCategory.Select(c => new CategoryBooksVM()
+                {              
+                    Name = c.Product.Name,
+                    Description = c.Product.Description,
+                    ImageUrl = c.Product.ImageUrl,
+                    Price = c.Product.Price,
+                    NewPrice = c.Product.NewPrice,
+
+                   
+                }).ToList(),
+            }).FirstOrDefault();
+            return _category;
+        }
+
     }
 }
