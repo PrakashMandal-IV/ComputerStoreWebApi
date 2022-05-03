@@ -15,6 +15,7 @@ namespace ComputerStoreWebApi.Data
             {
                 context.Admin.Add(new Admin()
                 {
+                    FirstName = "Admin",
                     Password = hash.Hash("Admin"),
                     Email = "prakashmandal.iv@gmail.com",
                     PhoneNumber = 0000000000,

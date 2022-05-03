@@ -3,10 +3,10 @@ using ComputerStoreWebApi.Data.ViewModel;
 
 namespace ComputerStoreWebApi.Data.Services
 {
-    public class CategpryService
+    public class CategoryService
     {
         private readonly AppDbContext _context;
-        public CategpryService(AppDbContext context)
+        public CategoryService(AppDbContext context)
         {
             _context = context;
         }
@@ -40,12 +40,12 @@ namespace ComputerStoreWebApi.Data.Services
                 _context.Category.Remove(_category=default!);
                 _context.SaveChanges();                 
         }
-        public CategoryWithBooksVM GetProductByCategory(int CategoryId)
+        public CategoryWithProductVM? GetProductByCategory(int CategoryId)
         {
-            var _category = _context.Category.Where(n => n.Id == CategoryId).Select(n => new CategoryWithBooksVM()
+            var _category = _context.Category.Where(n => n.Id == CategoryId).Select(n => new CategoryWithProductVM()
             {
                 Name = n.Name,
-                Books = n.ProductCategory.Select(c => new CategoryBooksVM()
+                Product = n.ProductCategory.Select(c => new ListProductVM()
                 {              
                     Name = c.Product.Name,
                     Description = c.Product.Description,

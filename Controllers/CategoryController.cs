@@ -8,8 +8,8 @@ namespace ComputerStoreWebApi.Controllers
     [Route("[Controller]")]
     public class CategoryController : Controller
     {
-        public CategpryService _categoryService;
-        public CategoryController(CategpryService categpryService)
+        public CategoryService _categoryService;
+        public CategoryController(CategoryService categpryService)
         {
             _categoryService = categpryService;
         }

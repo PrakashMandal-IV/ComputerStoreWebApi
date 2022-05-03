@@ -20,7 +20,7 @@ namespace ComputerStoreWebApi.Data
             modelBuilder.Entity<ProductCategory>()
                 .HasOne(p => p.Category)
                 .WithMany(c => c.ProductCategory)
-                .HasForeignKey(i => i.CategoryId); 
+                .HasForeignKey(i => i.CategoryId);
             modelBuilder.Entity<ProductTag>()
                 .HasOne(p => p.Tag)
                 .WithMany(c => c.ProductTags)

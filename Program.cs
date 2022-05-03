@@ -17,7 +17,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
 });
 builder.Services.AddTransient<AdminService>();
-builder.Services.AddTransient<CategpryService>();
+builder.Services.AddTransient<CategoryService>();
 builder.Services.AddTransient<TagService>();
 builder.Services.AddTransient<ProductService>();
 
