@@ -117,5 +117,16 @@ namespace ComputerStoreWebApi.Data.Services
             };
             return _product;
         }
+        public Product? UpdateProductStock(int id,ProductVMStock product)
+        {
+            var _product = _context.Product.FirstOrDefault(t => t.Id == id);
+            if(_product != null)
+            {
+                _product.InStock = product.Instock;
+                _product.ModifiedAt= DateTime.Now;
+                _context.SaveChanges();                         
+            }
+            return _product;
+        }
     }
 }

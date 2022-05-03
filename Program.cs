@@ -25,7 +25,7 @@ builder.Services.AddTransient<ProductService>();
 var MyAllowSpecificOrigin = "_myAllowSpecificOrigin";
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: MyAllowSpecificOrigin,
+    options.AddPolicy(name: MyAllowSpecificOrigin, 
         builder =>
     {
         builder.WithOrigins("http://localhost:8080");

@@ -59,5 +59,15 @@ namespace ComputerStoreWebApi.Controllers
             });
             return Ok();
         }
+        [HttpPut("update-product-stock/{id}")]
+        public async Task<IActionResult> UpdateProductStock(int id, [FromBody] ProductVMStock product)
+        {
+            await Task.Run(() =>
+            {
+                var _response = _productService.UpdateProductStock(id, product);
+                return Ok(_response);
+            });
+            return Ok();
+        }
     }
 }

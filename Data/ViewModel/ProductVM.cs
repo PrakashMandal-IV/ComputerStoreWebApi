@@ -29,6 +29,10 @@
     {
         public int NewPrice { get; set; }
     }
+    public class ProductVMStock
+    {
+        public int Instock { get; set; }
+    }
     public class CategoryBooksVM
     {      
         public string Name { get; set; } = string.Empty;
