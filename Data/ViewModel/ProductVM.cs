@@ -33,7 +33,7 @@
     {
         public int Instock { get; set; }
     }
-    public class CategoryBooksVM
+    public class ListProductVM
     {      
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;

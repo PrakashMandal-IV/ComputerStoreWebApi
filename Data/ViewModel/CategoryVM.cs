@@ -5,9 +5,9 @@
         public string  Name { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
     }
-    public class CategoryWithBooksVM
+    public class CategoryWithProductVM
     {
         public string Name { get; set; } = string.Empty;
-        public List<CategoryBooksVM> Books { get; set; } = default!;
+        public List<ListProductVM> Product { get; set; } = default!;
     }
 }
