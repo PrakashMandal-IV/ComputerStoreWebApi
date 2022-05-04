@@ -40,7 +40,6 @@ namespace ComputerStoreWebApi.Data.Services
 
 
         }
-
         // create jwt token
         public string CreateToken(Admin admin)
         {
