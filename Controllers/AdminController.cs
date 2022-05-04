@@ -1,3 +1,4 @@
+using ComputerStoreWebApi.Data.Model;
 using ComputerStoreWebApi.Data.Services;
 using ComputerStoreWebApi.Data.ViewModel;
 using Microsoft.AspNetCore.Authorization;
@@ -10,7 +11,7 @@ namespace ComputerStoreWebApi.Controllers
     public class AdminController : ControllerBase
     {
         public AdminService _AdminService;
-
+        
         public AdminController(AdminService adminService)
         {
             _AdminService = adminService;
@@ -30,15 +31,7 @@ namespace ComputerStoreWebApi.Controllers
         {
             var admin = _AdminService.GetAdminById(id);
             return Ok(admin);
-        }
-
-        //create new admin
-        [HttpPost("add-Admin") ,Authorize]
-        public IActionResult AddAdmin([FromBody] AdminVM admin)
-        {
-            _AdminService.AddAdmin(admin);
-            return Ok();
-        }
+        }     
         [HttpPut("update-admin-by-id/{id}")]
         public IActionResult UpdateAdminById(int id,[FromBody]AdminVM admin)
         {
