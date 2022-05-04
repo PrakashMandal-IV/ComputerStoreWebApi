@@ -16,7 +16,9 @@ namespace ComputerStoreWebApi.Data.Services
         public bool AddAdmin(AdminVM admin,string email)
         {
             var _creator =_context.Admin.FirstOrDefault(n => n.Email == email);
-            if(_creator == null)
+            var _existingemail = _context.Admin.FirstOrDefault(n => n.Email == admin.Email);
+            var _existingnumber = _context.Admin.FirstOrDefault(n => n.PhoneNumber == admin.PhoneNumber);
+            if (_existingemail != null || _existingnumber !=null)
             {
                 return false;
             }
