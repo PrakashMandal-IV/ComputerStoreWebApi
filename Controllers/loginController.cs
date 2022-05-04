@@ -30,7 +30,7 @@ namespace ComputerStoreWebApi.Controllers
             }
             else
             {
-                return BadRequest("You are not Authorize to add admin");
+                return BadRequest("Admin with same Email or phone number already exist !");
             }
             
         } 
