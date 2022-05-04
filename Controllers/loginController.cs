@@ -14,7 +14,7 @@ namespace ComputerStoreWebApi.Controllers
         {
             _loginService = loginService;
         }
-        [HttpPut("admin-login")]
+        [HttpPost("admin-login")]
         public IActionResult AdminLogin([FromBody]AdminLoginVM adminLogin)
         {
             var _response = _loginService.AdminLogin(adminLogin);
