@@ -37,8 +37,6 @@ namespace ComputerStoreWebApi.Data.Services
             }
            
             return "Invalid Detail";
-
-
         }
         // create jwt token
         public string CreateToken(Admin admin)
