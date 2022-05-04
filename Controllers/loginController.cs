@@ -18,7 +18,7 @@ namespace ComputerStoreWebApi.Controllers
         public IActionResult AdminLogin([FromBody]AdminLoginVM adminLogin)
         {
             var _response = _loginService.AdminLogin(adminLogin);
-            if(_response == null)
+            if(_response == "Not Found")
             {
                 return NotFound();
             }
