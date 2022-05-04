@@ -1,5 +1,6 @@
 using ComputerStoreWebApi.Data.Services;
 using ComputerStoreWebApi.Data.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ComputerStoreWebApi.Controllers
@@ -32,7 +33,7 @@ namespace ComputerStoreWebApi.Controllers
         }
 
         //create new admin
-        [HttpPost("add-Admin")]
+        [HttpPost("add-Admin") ,Authorize]
         public IActionResult AddAdmin([FromBody] AdminVM admin)
         {
             _AdminService.AddAdmin(admin);

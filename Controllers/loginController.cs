@@ -7,10 +7,10 @@ namespace ComputerStoreWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class loginController : ControllerBase
+    public class  LoginController : ControllerBase
     {
         private readonly LoginService? _loginService;
-        public loginController(LoginService loginService)
+        public LoginController(LoginService loginService)
         {
             _loginService = loginService;
         }

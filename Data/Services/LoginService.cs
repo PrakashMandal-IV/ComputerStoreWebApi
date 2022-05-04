@@ -41,7 +41,7 @@ namespace ComputerStoreWebApi.Data.Services
         // create jwt token
         public string CreateToken(Admin admin)
         {
-            List<Claim> claims = new List<Claim>
+            List<Claim> claims = new()
             {
                 new Claim(ClaimTypes.Email ,admin.Email),
                 new Claim(ClaimTypes.Role ,"Admin")

@@ -10,7 +10,7 @@ namespace ComputerStoreWebApi.Hash
     {
         public string Hash(string input)
         {
-            StringBuilder Sb = new StringBuilder();
+            StringBuilder Sb = new();
             using (SHA256 hash = SHA256.Create())
             {
                 Encoding enc = Encoding.UTF8;
