@@ -5,30 +5,40 @@ using ComputerStoreWebApi.Hash;
 namespace ComputerStoreWebApi.Data.Services
 {
     public class AdminService
-    {
+    {      
         private readonly HashPass hash = new();
         private readonly AppDbContext _context;
         public AdminService(AppDbContext context)
         {
-            _context = context;
+            _context = context;        
         }
          
-        public void AddAdmin(AdminVM admin)
-        {      
-            string pass = hash.Hash(admin.Password);
-            var _admin = new Admin()
+        public bool AddAdmin(AdminVM admin,string email)
+        {
+            var _creator =_context.Admin.FirstOrDefault(n => n.Email == email);
+            if(_creator == null)
             {
-               
-                Password = pass,
-                FirstName = admin.FirstName,
-                LastName = admin.LastName,
-                Email = admin.Email,
-                ImageUrl = admin.ImageUrl,
-                PhoneNumber = admin.PhoneNumber,
-                DateOfBirth = DateTime.Now
-            };
-            _context.Admin.Add(_admin);
-            _context.SaveChanges(); 
+                return false;
+            }
+            else
+            {
+                string pass = hash.Hash(admin.Password);
+                var _admin = new Admin()
+                {
+                    Password = pass,
+                    FirstName = admin.FirstName,
+                    LastName = admin.LastName,
+                    Email = admin.Email,
+                    ImageUrl = admin.ImageUrl,
+                    PhoneNumber = admin.PhoneNumber,
+                    DateOfBirth = DateTime.Now
+                };
+                _context.Admin.Add(_admin);
+                _admin.CreatedBy = _creator.Id;
+                _admin.CreatedAt = DateTime.Now;            
+                _context.SaveChanges();
+                return true;
+            }          
         }
 
         public List<Admin> GetAdminList() => _context.Admin.ToList();
@@ -55,7 +65,7 @@ namespace ComputerStoreWebApi.Data.Services
         public void DeleteAdminById(int adminId)
         {
             var admin = _context.Admin.FirstOrDefault(n => n.Id == adminId);
-            _context.Admin.Remove(admin=default!);
+            _context.Admin.Remove(admin);
             _context.SaveChanges();
         }
     }
