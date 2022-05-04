@@ -20,6 +20,7 @@ builder.Services.AddTransient<AdminService>();
 builder.Services.AddTransient<CategoryService>();
 builder.Services.AddTransient<TagService>();
 builder.Services.AddTransient<ProductService>();
+builder.Services.AddTransient<LoginService>();
 
 //CORS POLICY
 var MyAllowSpecificOrigin = "_myAllowSpecificOrigin";
