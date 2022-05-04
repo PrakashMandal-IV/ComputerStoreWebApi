@@ -13,7 +13,6 @@
         public int CreatedBy { get; set; }
         public DateTime CreatedAt { get; set; }
 
-
         public List<Product> Products { get; set; } = default!;
     }
 }
