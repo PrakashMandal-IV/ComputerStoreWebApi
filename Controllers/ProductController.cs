@@ -1,6 +1,8 @@
 ﻿using ComputerStoreWebApi.Data.Services;
 using ComputerStoreWebApi.Data.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ComputerStoreWebApi.Controllers
 {
@@ -13,10 +15,11 @@ namespace ComputerStoreWebApi.Controllers
         {
             _productService = productService;
         }
-        [HttpPost("add-product")]
+        [HttpPost("add-product"),Authorize(Roles ="Admin")]
         public IActionResult AddProduct([FromBody] ProductVM product)
         {
-            _productService.AddProduct(product);
+            string email = User.FindFirstValue(ClaimTypes.Email);
+            _productService.AddProduct(product,email);
             return Ok();
         }
         [HttpPut("update-product-name/{id}")]
