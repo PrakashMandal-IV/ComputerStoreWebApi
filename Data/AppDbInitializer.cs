@@ -13,13 +13,13 @@ namespace ComputerStoreWebApi.Data
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
             if (!context.Admin.Any())
             {
-                context.Admin.Add(new Admin()
+                var iniAdmin = context.Admin.Add(new Admin()
                 {
                     FirstName = "Admin",
                     Password = hash.Hash("Admin"),
-                    Email = "prakashmandal.iv@gmail.com",
+                    Email = "prakashmandal.iv@gmail.com",               
                     PhoneNumber = 0000000000,
-                });
+                });              
                 context.SaveChanges();
             }
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
