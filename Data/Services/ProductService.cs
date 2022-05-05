@@ -18,7 +18,8 @@
                 ImageUrl = product.ImageUrl,
                 Price = product.Price,
                 NewPrice = product.NewPrice,
-                Creator = _admin = default!,
+                CreatorId = _admin.Id,
+                ModifiedById = _admin.Id,
                 InStock = product.InStock,                
                 CreatedAt = DateTime.Now,              
             };
@@ -84,10 +85,12 @@
         }
         public Product? UpdateProductDescription(int id, ProductVMbyDescription product)
         {
+            
             var _product = _context.Product.FirstOrDefault(t => t.Id == id);
             if (_product != null)
             {
                 _product.Description = product.Discription;
+               
                 _product.ModifiedAt = DateTime.Now; 
                 _context.SaveChanges();
             };
