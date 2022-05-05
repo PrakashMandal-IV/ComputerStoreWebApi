@@ -13,6 +13,7 @@
         public int CreatedBy { get; set; }
         public DateTime CreatedAt { get; set; }
 
+        [NotMapped]
         public List<Product> Products { get; set; } = default!;
     }
 }

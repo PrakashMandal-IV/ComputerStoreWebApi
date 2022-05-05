@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿global using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ComputerStoreWebApi.Data.Model
 {
@@ -15,12 +15,14 @@ namespace ComputerStoreWebApi.Data.Model
         public int? CreatorId { get; set; }
         public Admin Creator { get; set; } = default!;
         public DateTime? CreatedAt { get; set; }
-        public int? ModifiedBy { get; set; }
+        public Admin ModifiedBy { get; set; }
         public DateTime? ModifiedAt { get; set; }
         public int? DeletedBy { get; set; }
         public DateTime? DeletedAt { get; set; }
 
+        [NotMapped]
         public List<ProductCategory> ProductCategory { get; set; } =default!;
+        [NotMapped]
         public List<ProductTag> ProductTags { get; set; } =default!;
     }
 }

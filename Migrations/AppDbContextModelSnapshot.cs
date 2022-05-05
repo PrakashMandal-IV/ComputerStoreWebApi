@@ -30,9 +30,6 @@ namespace ComputerStoreWebApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -136,7 +133,7 @@ namespace ComputerStoreWebApi.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -152,6 +149,8 @@ namespace ComputerStoreWebApi.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CreatorId");
+
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("Product");
                 });
@@ -240,10 +239,18 @@ namespace ComputerStoreWebApi.Migrations
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.Product", b =>
                 {
                     b.HasOne("ComputerStoreWebApi.Data.Model.Admin", "Creator")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("CreatorId");
 
+                    b.HasOne("ComputerStoreWebApi.Data.Model.Admin", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Creator");
+
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.ProductCategory", b =>
@@ -282,11 +289,6 @@ namespace ComputerStoreWebApi.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("Tag");
-                });
-
-            modelBuilder.Entity("ComputerStoreWebApi.Data.Model.Admin", b =>
-                {
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.Category", b =>

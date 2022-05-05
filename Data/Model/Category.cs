@@ -10,6 +10,7 @@
         public DateTime? ModifiedAt { get; set; }       
         public int? DeletedBy { get; set; }
         public DateTime? DeletedAt { get; set; }
+        [NotMapped]
         public List<ProductCategory> ProductCategory { get; set; } = default!;
     }
 }
