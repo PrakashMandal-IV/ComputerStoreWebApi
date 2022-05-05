@@ -8,6 +8,7 @@ namespace ComputerStoreWebApi.Controllers
 {
     [ApiController]
     [Route("[Controller]")]
+    [Authorize(Roles = "Admin")]
     public class ProductController : Controller
     {
         public ProductService _productService;
@@ -15,7 +16,7 @@ namespace ComputerStoreWebApi.Controllers
         {
             _productService = productService;
         }
-        [HttpPost("add-product"),Authorize(Roles ="Admin")]
+        [HttpPost("add-product")]
         public IActionResult AddProduct([FromBody] ProductVM product)
         {
             string email = User.FindFirstValue(ClaimTypes.Email);
@@ -27,7 +28,8 @@ namespace ComputerStoreWebApi.Controllers
         {
             await Task.Run(() =>
             {
-                var _response = _productService.UpdateProductName(id, product);
+                string email = User.FindFirstValue(ClaimTypes.Email);
+                var _response = _productService.UpdateProductName(id, product, email);
                 return Ok(_response);
             });
             return Ok();
@@ -37,7 +39,8 @@ namespace ComputerStoreWebApi.Controllers
         {
             await Task.Run(() =>
             {
-                var _response = _productService.UpdateProductDescription(id, product);
+                string email = User.FindFirstValue(ClaimTypes.Email);
+                var _response = _productService.UpdateProductDescription(id, product, email);
                 return Ok(_response);
             });
             return Ok();           
@@ -47,7 +50,8 @@ namespace ComputerStoreWebApi.Controllers
         {
             await Task.Run(() =>
             {
-                var _response = _productService.UpdateProductImage(id, product);
+                string email = User.FindFirstValue(ClaimTypes.Email);
+                var _response = _productService.UpdateProductImage(id, product, email);
                 return Ok(_response);
             });
             return Ok();
@@ -57,7 +61,8 @@ namespace ComputerStoreWebApi.Controllers
         {
             await Task.Run(() =>
             {
-                var _response = _productService.UpdateProductPrice(id, product);
+                string email = User.FindFirstValue(ClaimTypes.Email);
+                var _response = _productService.UpdateProductPrice(id, product, email);
                 return Ok(_response);
             });
             return Ok();
@@ -67,7 +72,8 @@ namespace ComputerStoreWebApi.Controllers
         {
             await Task.Run(() =>
             {
-                var _response = _productService.UpdateProductStock(id, product);
+                string email = User.FindFirstValue(ClaimTypes.Email);
+                var _response = _productService.UpdateProductStock(id, product, email);
                 return Ok(_response);
             });
             return Ok();
