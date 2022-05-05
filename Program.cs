@@ -56,12 +56,13 @@ builder.Services.AddTransient<LoginService>();
 var MyAllowSpecificOrigin = "_myAllowSpecificOrigin";
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: MyAllowSpecificOrigin, 
-        builder =>
-    {
-        builder.WithOrigins("http://localhost:8080");
-        builder.WithOrigins("http://127.0.0.1:5500");
-    });
+    options.AddPolicy(name: MyAllowSpecificOrigin,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://127.0.0.1:5500")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                      });
 });
 var app = builder.Build();
 
