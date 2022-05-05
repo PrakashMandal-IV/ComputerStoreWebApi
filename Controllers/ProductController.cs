@@ -35,7 +35,7 @@ namespace ComputerStoreWebApi.Controllers
             return Ok();
         }
         [HttpPut("update-product-description/{id}")]
-        public async Task<IActionResult> UpdateProductDescription(int id, [FromBody] ProductVMbyDescription product)
+        public async Task<IActionResult> UpdateProductDescription(int id,[FromBody] ProductVMbyDescription product)
         {
             await Task.Run(() =>
             {
