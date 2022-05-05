@@ -34,7 +34,7 @@ namespace ComputerStoreWebApi.Data.Services
                     DateOfBirth = DateTime.Now
                 };
                 _context.Admin.Add(_admin);
-                _admin.CreatedBy = _creator.Id;
+                _admin.CreatedBy = _creator?.Id;
                 _admin.CreatedAt = DateTime.Now;            
                 _context.SaveChanges();
                 return true;
@@ -65,7 +65,7 @@ namespace ComputerStoreWebApi.Data.Services
         public void DeleteAdminById(int adminId)
         {
             var admin = _context.Admin.FirstOrDefault(n => n.Id == adminId);
-            _context.Admin.Remove(admin);
+            _context.Admin.Remove(admin=default!);
             _context.SaveChanges();
         }
     }
