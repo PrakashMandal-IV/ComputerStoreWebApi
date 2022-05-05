@@ -15,7 +15,8 @@ namespace ComputerStoreWebApi.Data.Model
         public int? CreatorId { get; set; }
         public Admin Creator { get; set; } = default!;
         public DateTime? CreatedAt { get; set; }
-        public Admin ModifiedBy { get; set; }
+        public int ModifiedById { get; set; }
+        public Admin ModifiedBy { get; set; } = default!;
         public DateTime? ModifiedAt { get; set; }
         public int? DeletedBy { get; set; }
         public DateTime? DeletedAt { get; set; }
