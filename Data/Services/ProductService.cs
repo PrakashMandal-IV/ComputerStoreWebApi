@@ -11,8 +11,9 @@ namespace ComputerStoreWebApi.Data.Services
             _context = context;
         }
         //Add product to the store
-        public void AddProduct(ProductVM product)
+        public void AddProduct(ProductVM product,string email)
         {
+            var _admin = _context.Admin.FirstOrDefault(n =>n.Email == email);
             var _product = new Product()
             {
                 Name = product.Name,
@@ -20,11 +21,11 @@ namespace ComputerStoreWebApi.Data.Services
                 ImageUrl = product.ImageUrl,
                 Price = product.Price,
                 NewPrice = product.NewPrice,
-                InStock = product.InStock,  
-                CreatorId = product.CreatorId,
+                Creator = _admin = default!,
+                InStock = product.InStock,                
                 CreatedAt = DateTime.Now,              
             };
-            _context.Product.Add(_product);
+            _context.Product.Add(_product);          
             _context.SaveChanges();
             foreach(var id in product.CategoryId)
             {
