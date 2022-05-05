@@ -1,7 +1,4 @@
-﻿
-
-using ComputerStoreWebApi.Data.Model;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ComputerStoreWebApi.Data
 {

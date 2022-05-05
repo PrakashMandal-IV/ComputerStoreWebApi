@@ -1,7 +1,4 @@
-﻿using ComputerStoreWebApi.Data.Model;
-using ComputerStoreWebApi.Data.ViewModel;
-
-namespace ComputerStoreWebApi.Data.Services
+﻿namespace ComputerStoreWebApi.Data.Services
 {
     public class TagService
     {

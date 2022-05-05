@@ -1,6 +1,7 @@
 global using ComputerStoreWebApi.Data;
 global using ComputerStoreWebApi.Data.Services;
 global using ComputerStoreWebApi.Data.ViewModel;
+global using ComputerStoreWebApi.Data.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

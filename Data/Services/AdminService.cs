@@ -1,6 +1,4 @@
-﻿ using ComputerStoreWebApi.Data.Model;
-using ComputerStoreWebApi.Data.ViewModel;
-using ComputerStoreWebApi.Hash;
+﻿using ComputerStoreWebApi.Hash;
 
 namespace ComputerStoreWebApi.Data.Services
 {

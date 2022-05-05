@@ -1,6 +1,4 @@
-﻿using ComputerStoreWebApi.Data.Model;
-using ComputerStoreWebApi.Data.ViewModel;
-using ComputerStoreWebApi.Hash;
+﻿using ComputerStoreWebApi.Hash;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
