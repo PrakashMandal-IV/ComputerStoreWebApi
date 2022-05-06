@@ -23,6 +23,14 @@ namespace ComputerStoreWebApi.Controllers
             _productService.AddProduct(product,email);
             return Ok();
         }
+        [HttpGet("get-all-product")]
+        public async Task<IActionResult> GetProduct()
+        {         
+                var _product = await Task.Run(()=> _productService.GetAllProduct());
+                return Ok(_product);
+            
+            
+        }
         [HttpPut("update-product-name/{id}")]
         public async Task<IActionResult> UpdateProductName(int id,[FromBody] ProductVMbyName product)
         {
