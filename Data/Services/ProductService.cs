@@ -72,6 +72,8 @@
 
         }
 
+        public List<Product> GetAllProduct() => _context.Product.ToList();
+
         //update product
         public Product? UpdateProductName(int id ,ProductVMbyName product,string email)
         {
