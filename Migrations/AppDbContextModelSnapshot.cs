@@ -153,7 +153,7 @@ namespace ComputerStoreWebApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddressId")
+                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
@@ -162,30 +162,27 @@ namespace ComputerStoreWebApi.Migrations
                     b.Property<int>("CreatorId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DeletedBy")
+                    b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("ModeOfPayment")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ModifiedBy")
+                    b.Property<DateTime?>("ModifiedBy")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ModifiedId")
+                    b.Property<int?>("ModifiedId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
+                    b.Property<bool>("Paid")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -425,9 +422,7 @@ namespace ComputerStoreWebApi.Migrations
                 {
                     b.HasOne("ComputerStoreWebApi.Data.Model.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AddressId");
 
                     b.HasOne("ComputerStoreWebApi.Data.Model.User", "Creator")
                         .WithMany()
@@ -437,9 +432,7 @@ namespace ComputerStoreWebApi.Migrations
 
                     b.HasOne("ComputerStoreWebApi.Data.Model.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductId");
 
                     b.Navigation("Address");
 
