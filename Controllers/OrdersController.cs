@@ -42,6 +42,16 @@ namespace ComputerStoreWebApi.Controllers
             }
             else return NotFound();
         }
+        [HttpGet("get-pending-orders"), Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetPendingOrders()
+        {
+            var _response = _ordersService.GetPendingOrders();
+            if (_response != null)
+            {
+                return Ok(_response);
+            }
+            else return NotFound();
+        }
 
     }
 }
