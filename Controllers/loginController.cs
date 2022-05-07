@@ -49,7 +49,20 @@ namespace ComputerStoreWebApi.Controllers
             }
 
         }
-
+        [HttpPost("user-login")]
+        public async Task<IActionResult> UserLogin([FromBody] UserLoginVM user)
+        {
+            var _response = _loginService.UserLogin(user);
+            if (_response == "not found")
+            {
+                return NotFound();
+            }
+            else if (_response == "Invalid Detail")
+            {
+                return BadRequest("Invalid details");
+            }
+            else return Ok(_response);
+        }
         //admin lOGIN
         [HttpPost("admin-login")]
         public IActionResult AdminLogin([FromBody]AdminLoginVM adminLogin)

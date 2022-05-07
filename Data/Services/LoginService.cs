@@ -30,15 +30,35 @@ namespace ComputerStoreWebApi.Data.Services
             }
             else if(hash.Hash(_adminlogin.Password)==_admin.Password)
             {
-                string token = CreateToken(_admin);
+                string token = CreateAdminToken(_admin);
                 return token;
             }
-           
-            return "Invalid Detail";
+            else return "Invalid Detail";
         }
-        
+        public string? UserLogin(UserLoginVM user)
+        {
+            var _userLogin = new UserLoginVM()
+            {
+                Email = user.Email,
+                Password = user.Password,
+            };
+            var _user = _context.User?.FirstOrDefault(n => n.Email == _userLogin.Email);
+            {
+                if (_user == null)
+                {
+                    return "not found";
+                }
+                else if (hash.Hash(_userLogin.Password) == _user.Password)
+                {
+                    string token = CreateUserToken(_user);
+                    return token;
+                }
+                else return "Invalid Detail";
+            }
+                
+        }
         // create jwt token
-        public string CreateToken(Admin admin)
+        public string CreateAdminToken(Admin admin)
         {
             List<Claim> claims = new()
             {
@@ -56,6 +76,26 @@ namespace ComputerStoreWebApi.Data.Services
                 signingCredentials: creds);
             var jwt =  new JwtSecurityTokenHandler().WriteToken(token);
                 
+            return jwt;
+        }
+        public string CreateUserToken(User user)
+        {
+            List<Claim> claims = new()
+            {
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, "user")
+            };
+
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
+
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.Now.AddDays(1),
+                signingCredentials: creds);
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
             return jwt;
         }
     }
