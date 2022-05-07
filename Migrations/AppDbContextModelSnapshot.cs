@@ -33,7 +33,7 @@ namespace ComputerStoreWebApi.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedBy")
+                    b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateOfBirth")
@@ -133,7 +133,7 @@ namespace ComputerStoreWebApi.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ModifiedById")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -143,7 +143,13 @@ namespace ComputerStoreWebApi.Migrations
                     b.Property<int>("NewPrice")
                         .HasColumnType("int");
 
+                    b.Property<int>("Orders")
+                        .HasColumnType("int");
+
                     b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Returns")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -244,9 +250,7 @@ namespace ComputerStoreWebApi.Migrations
 
                     b.HasOne("ComputerStoreWebApi.Data.Model.Admin", "ModifiedBy")
                         .WithMany()
-                        .HasForeignKey("ModifiedById")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedById");
 
                     b.Navigation("Creator");
 

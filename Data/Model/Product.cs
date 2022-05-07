@@ -11,7 +11,9 @@ namespace ComputerStoreWebApi.Data.Model
         public string ImageUrl { get; set; } = string.Empty;
         public int Price { get; set; }
         public int NewPrice { get; set; }
-        public int InStock { get; set; }            
+        public int InStock { get; set; }   
+        public int Orders { get; set; } = 0;
+        public int Returns { get; set; } = 0;
         public int? CreatorId { get; set; }
         public Admin Creator { get; set; } = default!;
         public DateTime? CreatedAt { get; set; }
