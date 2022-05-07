@@ -19,8 +19,7 @@
             };
             _context.Tag.Add(_tag);
             _context.SaveChanges();
-        }
-        public Tag? GetTagByName(string name) => _context.Tag.FirstOrDefault(t => t.Name == name);
+        }      
         public TagProductVM? GetProductVM(string name)
         {
             var _tag = _context.Tag.Where(t => t.Name == name).Select(n => new TagProductVM()
