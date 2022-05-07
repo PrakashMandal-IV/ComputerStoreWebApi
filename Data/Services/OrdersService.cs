@@ -7,7 +7,7 @@
         {
             _context = context;
         }
-        public void CreateOrder(OrderVM order,string userEmail)
+        public void CreateOrder(OrderVM order, string userEmail)
         {
             var _product = _context.Product.FirstOrDefault(x => x.Id == order.ProductId);
             var _user = _context.User.FirstOrDefault(x => x.Email == userEmail);
@@ -30,11 +30,11 @@
             _context.UserOrder.Add(_userOrder);
             _context.SaveChanges();
         }
-        public bool ChangeOrderStatus(OrderStatus order,int orderId,string email)
+        public bool ChangeOrderStatus(OrderStatus order, int orderId, string email)
         {
             var _user = _context.User.FirstOrDefault(x => x.Email == email);
             var _order = _context.Orders.FirstOrDefault(n => n.Id == orderId);
-            if (_order == null || _order.Status != "pending"|| _order.Status != "completed"|| _order.Status != "return")
+            if (_order == null || _order.Status != "pending" || _order.Status != "completed" || _order.Status != "return")
             {
                 return false;
             }
@@ -50,15 +50,15 @@
         }
         public List<Orders> GetAllOrders(string sort)
         {
-            var _order = _context.Orders.OrderBy(n =>n.CreatedAt).ToList();
-            if(!string.IsNullOrEmpty(sort))
+            var _order = _context.Orders.OrderBy(n => n.CreatedAt).ToList();
+            if (!string.IsNullOrEmpty(sort))
             {
-                if(sort =="oldest")
+                if (sort == "oldest")
                 {
                     _order = _order.OrderByDescending(n => n.CreatedAt).ToList();
                 }
             }
-            
+
             return _order;
         }
         public List<Orders> GetPendingOrders()
@@ -69,6 +69,11 @@
         public List<Orders> GetCompletedOrders()
         {
             var _orders = _context.Orders.Where(n => n.Status == "completed").ToList();
+            return _orders;
+        }
+        public List<Orders> GetReturnOrders()
+        {
+            var _orders = _context.Orders.Where(n => n.Status == "return").ToList();
             return _orders;
         }
     }

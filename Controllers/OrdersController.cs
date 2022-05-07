@@ -35,7 +35,7 @@ namespace ComputerStoreWebApi.Controllers
         [HttpGet("get-all-orders/{sort}"),Authorize(Roles ="Admin")]
         public async Task<IActionResult> GetAllOrders(string sort)
         {
-            var _response = _ordersService.GetAllOrders(sort);
+            var _response = await Task.Run(() => _ordersService.GetAllOrders(sort));
             if(_response != null)
             {
                 return Ok(_response);
@@ -45,7 +45,27 @@ namespace ComputerStoreWebApi.Controllers
         [HttpGet("get-pending-orders"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetPendingOrders()
         {
-            var _response = _ordersService.GetPendingOrders();
+            var _response = await Task.Run(() => _ordersService.GetPendingOrders());
+            if (_response != null)
+            {
+                return Ok(_response);
+            }
+            else return NotFound();
+        }
+        [HttpGet("get-completed-orders"), Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetCompletedOrders()
+        {
+            var _response = await Task.Run(() => _ordersService.GetCompletedOrders());
+            if (_response != null)
+            {
+                return Ok(_response);
+            }
+            else return NotFound();
+        }
+        [HttpGet("get-return-orders"), Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetReturnOrders()
+        {
+            var _response = await Task.Run(()=> _ordersService.GetReturnOrders());
             if (_response != null)
             {
                 return Ok(_response);
