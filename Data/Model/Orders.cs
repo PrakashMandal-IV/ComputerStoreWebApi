@@ -18,5 +18,8 @@
         public DateTime DeletedAt { get; set; }
         public int DeletedBy { get; set; }
 
+        
+       public List<UserOrder> UserOrders { get; set; } = default!;
+
     }
 }
