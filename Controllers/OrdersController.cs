@@ -72,6 +72,16 @@ namespace ComputerStoreWebApi.Controllers
             }
             else return NotFound();
         }
+        [HttpGet("get-product-orders/{id}"), Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetPorductOrders(int id)
+        {
+            var _response = await Task.Run(() => _ordersService.GetOrderByProductId(id));
+            if (_response != null)
+            {
+                return Ok(_response);
+            }
+            else return NotFound();
+        }
 
     }
 }

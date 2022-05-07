@@ -76,5 +76,10 @@
             var _orders = _context.Orders.Where(n => n.Status == "return").ToList();
             return _orders;
         }
+        public List<Orders> GetOrderByProductId(int id)
+        {
+            var _order = _context.Orders.Where(n => n.ProductId == id).ToList();
+            return _order;
+        }
     }
 }
