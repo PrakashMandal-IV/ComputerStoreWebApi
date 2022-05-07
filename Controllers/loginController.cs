@@ -52,7 +52,7 @@ namespace ComputerStoreWebApi.Controllers
         [HttpPost("user-login")]
         public async Task<IActionResult> UserLogin([FromBody] UserLoginVM user)
         {
-            var _response = await Task.Run(()=> _loginService.UserLogin(user));
+            var _response = await Task.Run(()=> _loginService?.UserLogin(user));
             if (_response == "not found")
             {
                 return NotFound();
