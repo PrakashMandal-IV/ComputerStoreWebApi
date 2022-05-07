@@ -33,8 +33,7 @@ namespace ComputerStoreWebApi.Controllers
             else
             {
                 return BadRequest("Admin with same Email or phone number already exist !");
-            }
-            
+            }         
         } 
         [HttpPost("register-user")]
         public async Task<IActionResult> RegisterUser([FromBody] UserVM user)
@@ -53,7 +52,7 @@ namespace ComputerStoreWebApi.Controllers
         [HttpPost("user-login")]
         public async Task<IActionResult> UserLogin([FromBody] UserLoginVM user)
         {
-            var _response = _loginService.UserLogin(user);
+            var _response = await Task.Run(()=> _loginService.UserLogin(user));
             if (_response == "not found")
             {
                 return NotFound();
