@@ -13,8 +13,9 @@ namespace ComputerStoreWebApi.Controllers
     {
        
         private readonly AdminService _adminService;
+        private readonly UserService _userService;
         private readonly LoginService? _loginService;
-        public LoginController(LoginService loginService,AdminService admin)
+        public LoginController(LoginService loginService,AdminService admin,UserService user)
         {
             _loginService = loginService;
             _adminService = admin;
@@ -34,6 +35,21 @@ namespace ComputerStoreWebApi.Controllers
             }
             
         } 
+        [HttpPost("register-user")]
+        public async Task<IActionResult> RegisterUser([FromBody] UserVM user)
+        {
+            var _user = await Task.Run(() => _userService.RegisterUser(user));
+            if(_user == true)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("User with same email already exist");
+            }
+
+        }
+
         //admin lOGIN
         [HttpPost("admin-login")]
         public IActionResult AdminLogin([FromBody]AdminLoginVM adminLogin)

@@ -51,6 +51,7 @@ builder.Services.AddTransient<CategoryService>();
 builder.Services.AddTransient<TagService>();
 builder.Services.AddTransient<ProductService>();
 builder.Services.AddTransient<LoginService>();
+builder.Services.AddTransient<UserService>();
 
 //CORS POLICY
 var MyAllowSpecificOrigin = "_myAllowSpecificOrigin";

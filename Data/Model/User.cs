@@ -8,6 +8,8 @@
         public string Password { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public int PhoneNumber { get; set; }
+        public string Gender { get; set; } = string.Empty;
+        public DateTime DateOfBirth { get; set; }      
         public int CreatedBy { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }

@@ -8,7 +8,6 @@
         public User User { get; set; } = default!;
 
         public int OrderId { get; set; }
-        public Orders Order { get; set; } = default!;
-       
+        public Orders Order { get; set; } = default!;    
     }
 }
