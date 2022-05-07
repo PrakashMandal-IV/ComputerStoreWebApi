@@ -21,7 +21,7 @@ namespace ComputerStoreWebApi.Controllers
             await Task.Run(() => _ordersService.CreateOrder(order, email));
             return Ok();
         }
-        [HttpPost("update-order-status/{id}")]
+        [HttpPost("update-order-status/{id}"),Authorize(Roles ="Admin")]
         public async Task<IActionResult> ChangeStatus([FromBody]OrderStatus order,int id)
         {
             string email = User.FindFirstValue(ClaimTypes.Email);
@@ -31,6 +31,16 @@ namespace ComputerStoreWebApi.Controllers
                 return Ok();
             }
             else return BadRequest();
+        }
+        [HttpGet("get-all-orders/{sort}"),Authorize(Roles ="Admin")]
+        public async Task<IActionResult> GetAllOrders(string sort)
+        {
+            var _response = _ordersService.GetAllOrders(sort);
+            if(_response != null)
+            {
+                return Ok(_response);
+            }
+            else return NotFound();
         }
 
     }
