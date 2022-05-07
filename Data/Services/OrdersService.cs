@@ -61,6 +61,10 @@
             
             return _order;
         }
-    
+        public List<Orders> GetPendingOrders()
+        {
+            var _orders = _context.Orders.Where(n => n.Status == "pending").ToList();
+            return _orders;
+        }
     }
 }
