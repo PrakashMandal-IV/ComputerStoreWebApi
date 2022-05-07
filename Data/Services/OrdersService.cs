@@ -48,5 +48,19 @@
             }
 
         }
+        public List<Orders> GetAllOrders(string sort)
+        {
+            var _order = _context.Orders.OrderBy(n =>n.CreatedAt).ToList();
+            if(!string.IsNullOrEmpty(sort))
+            {
+                if(sort =="oldest")
+                {
+                    _order = _order.OrderByDescending(n => n.CreatedAt).ToList();
+                }
+            }
+            
+            return _order;
+        }
+    
     }
 }
