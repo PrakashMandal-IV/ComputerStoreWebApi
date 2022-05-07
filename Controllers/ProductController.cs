@@ -16,18 +16,31 @@ namespace ComputerStoreWebApi.Controllers
         {
             _productService = productService;
         }
-        [HttpPost("add-product")]
+        [HttpPost("add-product"),]
         public IActionResult AddProduct([FromBody] ProductVM product)
         {
             string email = User.FindFirstValue(ClaimTypes.Email);
             _productService.AddProduct(product,email);
             return Ok();
         }
-        [HttpGet("get-all-product")]
+        [HttpGet("get-all-product"),AllowAnonymous]
         public async Task<IActionResult> GetProduct()
         {         
                 var _product = await Task.Run(()=> _productService.GetAllProduct());
                 return Ok(_product);         
+        }
+        [HttpGet("get-product-by-id/{id}"),AllowAnonymous]
+        public async Task<IActionResult> GetProductByEmail(int id)
+        {
+            var _product = await Task.Run(()=> _productService.GetProductByid(id));
+            if( _product != null )
+            {
+                return Ok(_product);
+            }
+            else
+            {
+                return NotFound("Product not found");
+            }     
         }
         [HttpPut("update-product-name/{id}")]
         public async Task<IActionResult> UpdateProductName(int id,[FromBody] ProductVMbyName product)

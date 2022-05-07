@@ -13,7 +13,7 @@ namespace ComputerStoreWebApi.Data
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
             if (!context.Admin.Any())
             {
-                var iniAdmin = context.Admin.Add(new Admin()
+                context.Admin.Add(new Admin()
                 {
                     FirstName = "Admin",
                     Password = hash.Hash("Admin"),

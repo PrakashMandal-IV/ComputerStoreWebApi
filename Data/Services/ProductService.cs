@@ -20,7 +20,7 @@
                 Price = product.Price,
                 NewPrice = product.NewPrice,
                 CreatorId = _admin?.Id,
-                ModifiedById = _admin.Id,
+                ModifiedById = _admin?.Id,
                 InStock = product.InStock,                
                 CreatedAt = DateTime.Now,              
             };
@@ -73,6 +73,17 @@
         }
 
         public List<Product> GetAllProduct() => _context.Product.ToList();
+
+
+        public Product? GetProductByid(int id)
+        {
+            var _product = _context.Product.FirstOrDefault(n => n.Id == id);
+            if (_product != null)
+            {
+                return _product;
+            }
+            else return null;
+        }
 
         //update product
         public Product? UpdateProductName(int id ,ProductVMbyName product,string email)
