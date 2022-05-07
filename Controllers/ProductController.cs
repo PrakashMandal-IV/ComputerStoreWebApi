@@ -39,7 +39,7 @@ namespace ComputerStoreWebApi.Controllers
             }
             else
             {
-                return BadRequest("Product not found");
+                return NotFound("Product not found");
             }     
         }
         [HttpPut("update-product-name/{id}")]

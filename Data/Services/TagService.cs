@@ -34,7 +34,11 @@
                     NewPrice = c.Product.NewPrice,
                 }).ToList()
             }).FirstOrDefault();
-            return _tag;
+            if(null != _tag)
+            {
+                return _tag;
+            }
+            else return null;
         }
     }
 }

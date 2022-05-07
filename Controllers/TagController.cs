@@ -24,7 +24,11 @@ namespace ComputerStoreWebApi.Controllers
         public IActionResult GetProductByTag(string name)
         {
             var _response = _tagService.GetProductVM(name);
-            return Ok(_response);
+            if (_response != null)
+            {
+                return Ok(_response);
+            }
+            else return NotFound("No Products found");
         }
     }
 }
