@@ -66,5 +66,10 @@
             var _orders = _context.Orders.Where(n => n.Status == "pending").ToList();
             return _orders;
         }
+        public List<Orders> GetCompletedOrders()
+        {
+            var _orders = _context.Orders.Where(n => n.Status == "completed").ToList();
+            return _orders;
+        }
     }
 }
