@@ -20,7 +20,7 @@
                 Price = product.Price,
                 NewPrice = product.NewPrice,
                 CreatorId = _admin?.Id,
-                ModifiedById = _admin.Id,
+                ModifiedById = _admin?.Id,
                 InStock = product.InStock,                
                 CreatedAt = DateTime.Now,              
             };
