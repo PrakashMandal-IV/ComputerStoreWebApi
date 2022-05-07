@@ -27,9 +27,8 @@ namespace ComputerStoreWebApi.Data.Services
                     DateOfBirth = user.DateOfBirth,
                     Gender = user.Gender,
                 };
-                _context.User.Add(_user);
-                 var currentuser =_context.User.FirstOrDefault(n => n.Email == user.Email);
-                _user.CreatedBy = currentuser.Id;
+                _context.User.Add(_user);           
+                _user.CreatedBy = _user.Id;
                 _user.CreatedAt = DateTime.Now;
                 _context.SaveChanges();
                 return true;             
