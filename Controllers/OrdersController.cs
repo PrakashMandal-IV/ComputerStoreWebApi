@@ -25,7 +25,7 @@ namespace ComputerStoreWebApi.Controllers
         public async Task<IActionResult> ChangeStatus([FromBody]OrderStatus order,int id)
         {
             string email = User.FindFirstValue(ClaimTypes.Email);
-           bool _response =  await Task.Run(async () => _ordersService.ChangeOrderStatus(order, id, email));
+           bool _response =  await Task.Run(() => _ordersService.ChangeOrderStatus(order, id, email));
             if (_response)
             {
                 return Ok();
