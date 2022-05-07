@@ -13,12 +13,12 @@
         public User? Creator { get; set; }
         public DateTime CreatedAt { get; set; }
         public int? ModifiedId { get; set; }
-        public DateTime? ModifiedBy { get; set; }
+        public DateTime? ModifiedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
         public int? DeletedBy { get; set; }
 
         
-       public List<UserOrder> UserOrders { get; set; } = default!;
+        public List<UserOrder> UserOrders { get; set; } = default!;
 
     }
 }

@@ -168,7 +168,7 @@ namespace ComputerStoreWebApi.Migrations
                     b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("ModifiedBy")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("ModifiedId")
