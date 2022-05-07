@@ -16,8 +16,8 @@
                 Paid = order.Paid,
             };
             _context.Orders.Add(_order);
-            _order.ProductId = _product.Id;
-            _order.CreatorId = _user.Id;
+            _order.ProductId = _product?.Id;
+            _order.CreatorId = _user?.Id;
             // LINE TO ADD ADDRESS LATER //
             _order.Status = "pending";
             _order.CreatedAt = DateTime.Now;
