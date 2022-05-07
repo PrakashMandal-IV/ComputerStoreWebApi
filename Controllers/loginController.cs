@@ -19,6 +19,7 @@ namespace ComputerStoreWebApi.Controllers
         {
             _loginService = loginService;
             _adminService = admin;
+            _userService = user;
         }
         //register admin
        [HttpPost("register-admin"),Authorize(Roles ="Admin")]
