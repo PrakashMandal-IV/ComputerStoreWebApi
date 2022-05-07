@@ -21,5 +21,17 @@ namespace ComputerStoreWebApi.Controllers
             await Task.Run(() => _ordersService.CreateOrder(order, email));
             return Ok();
         }
+        [HttpPost("update-order-status/{id}")]
+        public async Task<IActionResult> ChangeStatus([FromBody]OrderStatus order,int id)
+        {
+            string email = User.FindFirstValue(ClaimTypes.Email);
+           bool _response =  await Task.Run(async () => _ordersService.ChangeOrderStatus(order, id, email));
+            if (_response)
+            {
+                return Ok();
+            }
+            else return BadRequest();
+        }
+
     }
 }
