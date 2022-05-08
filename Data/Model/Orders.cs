@@ -9,6 +9,7 @@
         public int? AddressId { get; set; }
         public Address? Address { get; set; } //refrence
         public string Status { get; set; } = "pending";
+        public string Substatus { get; set; } = "Approving";
         public int? CreatorId { get; set; } 
         public User? Creator { get; set; }
         public DateTime CreatedAt { get; set; }
