@@ -42,6 +42,18 @@ namespace ComputerStoreWebApi.Controllers
                 return NotFound("Product not found");
             }     
         }
+        [HttpGet("product-by-admin")]
+        public async Task<IActionResult> GetProductByAdmin()
+        {
+            string email = User.FindFirstValue(ClaimTypes.Email);
+            var _response = await Task.Run(() => _productService.GetProductByAdmin(email));
+            if (_response != null)
+            {
+                return Ok(_response);
+            }
+            else return NotFound("No Product Found");
+        }
+
         [HttpPut("update-product-name/{id}")]
         public async Task<IActionResult> UpdateProductName(int id,[FromBody] ProductVMbyName product)
         {          

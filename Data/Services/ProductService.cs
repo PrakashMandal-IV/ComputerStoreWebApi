@@ -151,5 +151,16 @@
             }
             return _product;
         }
+        public List<Product> GetProductByAdmin(string email)
+        {
+            var admin = _context.Admin.FirstOrDefault(n => n.Email == email);
+            var _product = _context.Product.Where(n => n.CreatorId == admin.Id).ToList();
+            if (_product != null)
+            {
+                return _product;
+            }
+            else return null;
+
+        }
     }
 }
