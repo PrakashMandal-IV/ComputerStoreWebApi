@@ -10,6 +10,7 @@
         public Address? Address { get; set; } //refrence
         public string Status { get; set; } = "pending";
         public string Substatus { get; set; } = "Approving";
+        public string ShipmentTrackingNumber { get; set; }=string.Empty;
         public int? CreatorId { get; set; } 
         public User? Creator { get; set; }
         public DateTime CreatedAt { get; set; }

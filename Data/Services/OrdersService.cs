@@ -81,7 +81,21 @@
                 return true;
             }
             else return false;
-
+        }
+        public bool AddShipmentNumber(ShipmentNumber order, int orderId, string email)
+        {
+            var _user = _context.User.FirstOrDefault(x => x.Email == email);
+            var _order = _context.Orders.FirstOrDefault(n => n.Id == orderId);
+            if (_order?.Substatus == "shipped")
+            {
+                _order.Status = order.Status;
+                _order.ModifiedId = _user?.Id;
+                _order.ModifiedAt = DateTime.Now;
+                _context.SaveChanges();
+                return true;        
+            }
+            else return false;
+            
 
         }
         public List<Orders> GetAllOrders(string sort)

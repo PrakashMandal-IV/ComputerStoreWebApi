@@ -32,7 +32,7 @@ namespace ComputerStoreWebApi.Controllers
             }
             else return BadRequest();
         }
-        [HttpPost("update-order-status/{id}"), Authorize(Roles = "Admin")]
+        [HttpPost("update-order-Substatus/{id}"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> ChangeSubStatus([FromBody] OrderSubStatus order, int id)
         {
             string email = User.FindFirstValue(ClaimTypes.Email);
@@ -42,6 +42,17 @@ namespace ComputerStoreWebApi.Controllers
                 return Ok();
             }
             else return BadRequest("Invalid Input");
+        }
+        [HttpPost("add-order-shipmentnumber/{id}"), Authorize(Roles = "Admin")]
+        public async Task<IActionResult> ShipmentNumber([FromBody] ShipmentNumber order, int id)
+        {
+            string email = User.FindFirstValue(ClaimTypes.Email);
+            bool _response = await Task.Run(() => _ordersService.AddShipmentNumber(order, id, email));
+            if (_response)
+            {
+                return Ok();
+            }
+            else return BadRequest("Only Add if order is shipped");
         }
         [HttpGet("get-all-orders/{sort}"),Authorize(Roles ="Admin")]
         public async Task<IActionResult> GetAllOrders(string sort)

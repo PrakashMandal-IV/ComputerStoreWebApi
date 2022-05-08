@@ -159,7 +159,7 @@ namespace ComputerStoreWebApi.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatorId")
+                    b.Property<int?>("CreatorId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAt")
@@ -180,7 +180,15 @@ namespace ComputerStoreWebApi.Migrations
                     b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ShipmentTrackingNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Substatus")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -426,9 +434,7 @@ namespace ComputerStoreWebApi.Migrations
 
                     b.HasOne("ComputerStoreWebApi.Data.Model.User", "Creator")
                         .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatorId");
 
                     b.HasOne("ComputerStoreWebApi.Data.Model.Product", "Product")
                         .WithMany()
