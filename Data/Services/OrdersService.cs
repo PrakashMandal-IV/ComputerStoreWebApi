@@ -2,7 +2,7 @@
 {
     public class OrdersService
     {
-        private AppDbContext _context;
+        private readonly AppDbContext _context;
         public OrdersService(AppDbContext context)
         {
             _context = context;
