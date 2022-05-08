@@ -34,7 +34,7 @@
         {
             var _user = _context.User.FirstOrDefault(x => x.Email == email);
             var _order = _context.Orders.FirstOrDefault(n => n.Id == orderId);
-            if (_order == null || _order.Status != "pending" || _order.Status != "completed" || _order.Status != "return")
+            if (_order == null || _order.Status != "pending" || _order.Status != "completed" || _order.Status != "return" || _order.Status != "approval" || _order.Status != "ready" || _order.Status != "shipped" || _order.Status != "Canceled")
             {
                 return false;
             }
