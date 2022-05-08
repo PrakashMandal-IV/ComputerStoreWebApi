@@ -32,6 +32,17 @@ namespace ComputerStoreWebApi.Controllers
             }
             else return BadRequest();
         }
+        [HttpPost("update-order-status/{id}"), Authorize(Roles = "Admin")]
+        public async Task<IActionResult> ChangeSubStatus([FromBody] OrderSubStatus order, int id)
+        {
+            string email = User.FindFirstValue(ClaimTypes.Email);
+            bool _response = await Task.Run(() => _ordersService.ChangeOrderSubStatus(order, id, email));
+            if (_response)
+            {
+                return Ok();
+            }
+            else return BadRequest("Invalid Input");
+        }
         [HttpGet("get-all-orders/{sort}"),Authorize(Roles ="Admin")]
         public async Task<IActionResult> GetAllOrders(string sort)
         {
