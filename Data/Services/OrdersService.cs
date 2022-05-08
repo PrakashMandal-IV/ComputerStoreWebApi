@@ -88,7 +88,7 @@
             var _order = _context.Orders.FirstOrDefault(n => n.Id == orderId);
             if (_order?.Substatus == "shipped")
             {
-                _order.Status = order.Status;
+                _order.ShipmentTrackingNumber = order.ShipmentTrackingNumber;
                 _order.ModifiedId = _user?.Id;
                 _order.ModifiedAt = DateTime.Now;
                 _context.SaveChanges();
