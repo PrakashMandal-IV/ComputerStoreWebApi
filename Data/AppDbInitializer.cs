@@ -19,7 +19,7 @@ namespace ComputerStoreWebApi.Data
                     Password = hash.Hash("Admin"),
                     Email = "prakashmandal.iv@gmail.com",               
                     PhoneNumber = 0000000000,
-                });              
+                });
                 context.SaveChanges();
             }
 #pragma warning restore CS8602 // Dereference of a possibly null reference.

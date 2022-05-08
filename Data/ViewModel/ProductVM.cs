@@ -7,8 +7,7 @@
         public string ImageUrl { get; set; } = string.Empty;
         public int Price { get; set; }
         public int NewPrice { get; set; }
-        public int InStock { get; set; } 
-        public int Orders { get; set; }
+        public int InStock { get; set; }       
         public List<int> CategoryId { get; set; } = default!;
         public List<string> TagName { get; set; } = default!;
     }

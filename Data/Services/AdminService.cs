@@ -68,5 +68,6 @@ namespace ComputerStoreWebApi.Data.Services
             _context.Admin.Remove(admin=default!);
             _context.SaveChanges();
         }
+        
     }
 }
