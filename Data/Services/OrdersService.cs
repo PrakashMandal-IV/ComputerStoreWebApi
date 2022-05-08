@@ -48,6 +48,42 @@
             }
 
         }
+        public bool ChangeOrderSubStatus(OrderSubStatus order, int orderId, string email)
+        {
+            var _user = _context.User.FirstOrDefault(x => x.Email == email);
+            var _order = _context.Orders.FirstOrDefault(n => n.Id == orderId);
+            if (_order == null || _order.Substatus!= "pending" || _order.Substatus != "received"|| _order.Substatus != "completed" || _order.Substatus != "return" || _order.Substatus != "approval" || _order.Substatus != "ready" || _order.Substatus != "shipped" || _order.Substatus != "Canceled")
+            {
+                return false;
+            }
+            else if(_order.Status == "pending" && (_order.Substatus != "approval" || _order.Substatus != "ready" || _order.Substatus != "shipped" || _order.Substatus != "completed"))
+            {
+                _order.Substatus = order.Substatus;
+                _order.ModifiedId = _user?.Id;
+                _order.ModifiedAt = DateTime.Now;
+                _context.SaveChanges();
+                return true;
+            }
+            else if (_order.Status == "completed" && (_order.Substatus != "received" || _order.Substatus != "return"))
+            {
+                _order.Substatus = order.Substatus;
+                _order.ModifiedId = _user?.Id;
+                _order.ModifiedAt = DateTime.Now;
+                _context.SaveChanges();
+                return true;
+            }
+            else if (_order.Status == "return" && (_order.Substatus != "picked up" || _order.Substatus != "refunded"))
+            {
+                _order.Substatus = order.Substatus;
+                _order.ModifiedId = _user?.Id;
+                _order.ModifiedAt = DateTime.Now;
+                _context.SaveChanges();
+                return true;
+            }
+            else return false;
+
+
+        }
         public List<Orders> GetAllOrders(string sort)
         {
             var _order = _context.Orders.OrderBy(n => n.CreatedAt).ToList();
@@ -63,7 +99,7 @@
         }
         public List<Orders> GetPendingOrders()
         {
-            var _orders = _context.Orders.Where(n => n.Status == "pending").ToList();
+            var _orders = _context.Orders.Where(n => n.Status != "return").Where(x => x.Status != "completed").ToList();
             return _orders;
         }
         public List<Orders> GetCompletedOrders()

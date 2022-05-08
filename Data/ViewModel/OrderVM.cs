@@ -9,4 +9,8 @@
     {
         public string Status { get; set; } =string.Empty;
     }
+    public class OrderSubStatus
+    {
+        public string Substatus { get; set; } = string.Empty;
+    }
 }
