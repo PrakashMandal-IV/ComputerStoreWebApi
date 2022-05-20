@@ -8,5 +8,6 @@
     {
         public string Name { get; set; } = string.Empty;
         public List<ListProductVM> Product { get; set; } = default!;
+        public List<CategoryVM> Category { get; set; } = default!;
     }
 }

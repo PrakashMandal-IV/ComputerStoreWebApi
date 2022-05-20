@@ -49,8 +49,10 @@
                     ImageUrl = c.Product.ImageUrl,
                     Price = c.Product.Price,
                     NewPrice = c.Product.NewPrice,
-
-                   
+                    Category =_context.ProductCategory.Where(m => m.ProductId == c.Product.Id).Select(x => new CategoryVM()
+                    {
+                        Name = x.Category.Name,
+                    }).ToList(),
                 }).ToList(),
             }).FirstOrDefault();
             return _category;
