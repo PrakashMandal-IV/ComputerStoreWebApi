@@ -22,6 +22,11 @@ namespace ComputerStoreWebApi.Controllers
             _userService = user;
         }
         //register admin
+        [HttpGet("check-validation"),Authorize]
+        public ActionResult CheckToken()
+        {
+            return Ok();
+        }
        [HttpPost("register-admin"),Authorize(Roles ="Admin")]
         public ActionResult<string> RegisterAdmin([FromBody] AdminVM admin)
         {
