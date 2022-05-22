@@ -35,7 +35,7 @@ namespace ComputerStoreWebApi.Data.Services
             }
             else return false;
         }
-        public bool AddAddress(AddressVM address,string email)
+        public bool AddUserAddress(AddressVM address,string email)
         {
             var _user = _context.User.FirstOrDefault(x => x.Email == email);
             if(_user == null)
