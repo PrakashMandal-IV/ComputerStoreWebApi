@@ -43,7 +43,8 @@
             {
                 Name = n.Name,
                 Product = n.ProductCategory.Select(c => new ListProductVM()
-                {              
+                {         
+                    Id = c.Product.Id,
                     Name = c.Product.Name,
                     Description = c.Product.Description,
                     ImageUrl = c.Product.ImageUrl,
