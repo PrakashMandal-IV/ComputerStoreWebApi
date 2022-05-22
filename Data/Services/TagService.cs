@@ -22,8 +22,6 @@
         }      
         public TagProductVM? GetProductVM(string name)
         {
-            
-            
                 var _tag = _context.Tag.Where(t => t.Name.Contains(name)).Select(n => new TagProductVM()
                 {
                     Name = n.Name,
