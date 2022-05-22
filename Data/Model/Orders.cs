@@ -19,7 +19,7 @@
         public DateTime? DeletedAt { get; set; }
         public int? DeletedBy { get; set; }
 
-        
+        [NotMapped]
         public List<UserOrder> UserOrders { get; set; } = default!;
 
     }

@@ -13,5 +13,6 @@
         public int PostalCode { get; set; }
         public int PhoneNumber { get; set; }
 
+        public List<UserAddress> UserAddresses { get; set; } = default!;
     }
 }
