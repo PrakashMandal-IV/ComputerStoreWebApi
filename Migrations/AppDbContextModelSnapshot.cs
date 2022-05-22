@@ -30,8 +30,8 @@ namespace ComputerStoreWebApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddressType")
-                        .HasColumnType("int");
+                    b.Property<bool>("AddressType")
+                        .HasColumnType("bit");
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -49,8 +49,8 @@ namespace ComputerStoreWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<long>("PhoneNumber")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("PostalCode")
                         .HasColumnType("int");
