@@ -13,6 +13,7 @@
         public int PostalCode { get; set; }
         public long PhoneNumber { get; set; }
 
+        [NotMapped]
         public List<UserAddress> UserAddresses { get; set; } = default!;
     }
 }
