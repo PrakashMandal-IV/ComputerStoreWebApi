@@ -35,5 +35,53 @@ namespace ComputerStoreWebApi.Data.Services
             }
             else return false;
         }
+        public bool AddUserAddress(AddressVM address,string email)
+        {
+            var _user = _context.User.FirstOrDefault(x => x.Email == email);
+            if(_user == null)
+            {
+                return false;
+            }
+            else
+            {
+                var _address = new Address()
+                {
+                    Name = address.Name,
+                    AddressType = address.AddressType,
+                    Street = address.Street,
+                    City = address.City,
+                    State = address.State,
+                    Country = address.Country,
+                    LandMark = address.LandMark,
+                    PostalCode = address.PostalCode,
+                    PhoneNumber = address.PhoneNumber,
+                };
+                _context.Address.Add(_address);
+                _context.SaveChanges();
+                var _userAddress = new UserAddress()
+                {
+                    UserId = _user.Id,
+                    AddressId = _address.Id,
+                };
+                _context.UserAddresses.Add(_userAddress);
+                _context.SaveChanges();
+                return true;
+            }   
+        }
+
+        public List<Address> GetUserAddress(string email)
+        {
+            var _user = _context.User.FirstOrDefault(n => n.Email == email);
+            if(null == _user)
+            {
+                return null;
+            }
+            else
+            {
+                var _userAddress = _context.UserAddresses.Where(n => n.UserId == _user.Id).FirstOrDefault();
+                var _address = _context.Address.Where(n => n.Id == _userAddress.AddressId).ToList();
+                return _address;
+            }
+        }
     }
 }

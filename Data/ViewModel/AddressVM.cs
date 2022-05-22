@@ -1,8 +1,7 @@
-﻿namespace ComputerStoreWebApi.Data.Model
+﻿namespace ComputerStoreWebApi.Data.ViewModel
 {
-    public class Address
+    public class AddressVM
     {
-        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public bool AddressType { get; set; }
         public string Street { get; set; } = string.Empty;
@@ -12,8 +11,5 @@
         public string LandMark { get; set; } = string.Empty;
         public int PostalCode { get; set; }
         public long PhoneNumber { get; set; }
-
-        [NotMapped]
-        public List<UserAddress> UserAddresses { get; set; } = default!;
     }
 }

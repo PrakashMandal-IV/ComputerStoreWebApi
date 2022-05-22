@@ -19,5 +19,6 @@
 
        
       public List<UserOrder> UserOrder { get; set; } = default!;
+      public List<UserAddress> UserAddresses { get; set; } = default!;
     }
 }

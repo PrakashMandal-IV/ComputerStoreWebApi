@@ -17,7 +17,7 @@ namespace ComputerStoreWebApi.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.4")
+                .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -30,8 +30,8 @@ namespace ComputerStoreWebApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddressType")
-                        .HasColumnType("int");
+                    b.Property<bool>("AddressType")
+                        .HasColumnType("bit");
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -49,8 +49,8 @@ namespace ComputerStoreWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<long>("PhoneNumber")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("PostalCode")
                         .HasColumnType("int");
@@ -180,6 +180,9 @@ namespace ComputerStoreWebApi.Migrations
                     b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.Property<string>("ShipmentTrackingNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -194,11 +197,7 @@ namespace ComputerStoreWebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
-
                     b.HasIndex("CreatorId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Orders");
                 });
@@ -403,6 +402,29 @@ namespace ComputerStoreWebApi.Migrations
                     b.ToTable("User");
                 });
 
+            modelBuilder.Entity("ComputerStoreWebApi.Data.Model.UserAddress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserAddresses");
+                });
+
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.UserOrder", b =>
                 {
                     b.Property<int>("Id")
@@ -428,23 +450,11 @@ namespace ComputerStoreWebApi.Migrations
 
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.Orders", b =>
                 {
-                    b.HasOne("ComputerStoreWebApi.Data.Model.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
                     b.HasOne("ComputerStoreWebApi.Data.Model.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatorId");
 
-                    b.HasOne("ComputerStoreWebApi.Data.Model.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
-
-                    b.Navigation("Address");
-
                     b.Navigation("Creator");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.Product", b =>
@@ -500,6 +510,25 @@ namespace ComputerStoreWebApi.Migrations
                     b.Navigation("Tag");
                 });
 
+            modelBuilder.Entity("ComputerStoreWebApi.Data.Model.UserAddress", b =>
+                {
+                    b.HasOne("ComputerStoreWebApi.Data.Model.Address", "Address")
+                        .WithMany("UserAddresses")
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ComputerStoreWebApi.Data.Model.User", "User")
+                        .WithMany("UserAddresses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.UserOrder", b =>
                 {
                     b.HasOne("ComputerStoreWebApi.Data.Model.Orders", "Order")
@@ -517,6 +546,11 @@ namespace ComputerStoreWebApi.Migrations
                     b.Navigation("Order");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ComputerStoreWebApi.Data.Model.Address", b =>
+                {
+                    b.Navigation("UserAddresses");
                 });
 
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.Category", b =>
@@ -543,6 +577,8 @@ namespace ComputerStoreWebApi.Migrations
 
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.User", b =>
                 {
+                    b.Navigation("UserAddresses");
+
                     b.Navigation("UserOrder");
                 });
 #pragma warning restore 612, 618
