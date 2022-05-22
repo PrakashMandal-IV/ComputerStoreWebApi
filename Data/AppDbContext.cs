@@ -37,6 +37,14 @@ namespace ComputerStoreWebApi.Data
                 .WithMany(c =>c.UserOrders)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasForeignKey(i => i.OrderId);
+            modelBuilder.Entity<UserAddress>()
+                .HasOne(p => p.User)
+                .WithMany(c => c.UserAddresses)
+                .HasForeignKey(i => i.UserId);
+            modelBuilder.Entity<UserAddress>()
+                .HasOne(p => p.Address)
+                .WithMany(p => p.UserAddresses)
+                .HasForeignKey(i => i.AddressId);
         }
         public DbSet<Admin> Admin { get; set; } = default!;
         public DbSet<Category> Category { get; set; } = default!;
@@ -48,5 +56,9 @@ namespace ComputerStoreWebApi.Data
         public DbSet<User> User { get; set; } = default!;
         public DbSet<Orders> Orders { get; set; } = default!;
         public DbSet<UserOrder> UserOrder { get; set; } = default!;
+
+        //address
+        public DbSet<Address> Address { get; set; } = default!;
+        public DbSet<UserAddress> UserAddresses { get; set; } = default!;
     }
 }
