@@ -4,9 +4,12 @@
     {
         public int Id { get; set; } 
         public int? ProductId { get; set; }
+        [NotMapped]
         public Product? Product { get; set; }     
+        public int Quantity { get; set; }
         public bool Paid { get; set; }
         public int? AddressId { get; set; }
+        [NotMapped]
         public Address? Address { get; set; } //refrence
         public string Status { get; set; } = "pending";
         public string Substatus { get; set; } = "Approving";
