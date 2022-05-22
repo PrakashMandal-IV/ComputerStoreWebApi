@@ -180,6 +180,9 @@ namespace ComputerStoreWebApi.Migrations
                     b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.Property<string>("ShipmentTrackingNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -194,11 +197,7 @@ namespace ComputerStoreWebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
-
                     b.HasIndex("CreatorId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Orders");
                 });
@@ -451,23 +450,11 @@ namespace ComputerStoreWebApi.Migrations
 
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.Orders", b =>
                 {
-                    b.HasOne("ComputerStoreWebApi.Data.Model.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
                     b.HasOne("ComputerStoreWebApi.Data.Model.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatorId");
 
-                    b.HasOne("ComputerStoreWebApi.Data.Model.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
-
-                    b.Navigation("Address");
-
                     b.Navigation("Creator");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.Product", b =>
