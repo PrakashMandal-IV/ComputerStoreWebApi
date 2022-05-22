@@ -66,8 +66,22 @@ namespace ComputerStoreWebApi.Data.Services
                 _context.UserAddresses.Add(_userAddress);
                 _context.SaveChanges();
                 return true;
+            }   
+        }
+
+        public List<Address> GetUserAddress(string email)
+        {
+            var _user = _context.User.FirstOrDefault(n => n.Email == email);
+            if(null == _user)
+            {
+                return null;
             }
-            
+            else
+            {
+                var _userAddress = _context.UserAddresses.Where(n => n.UserId == _user.Id).FirstOrDefault();
+                var _address = _context.Address.Where(n => n.Id == _userAddress.AddressId).ToList();
+                return _address;
+            }
         }
     }
 }
