@@ -22,24 +22,28 @@
         }      
         public TagProductVM? GetProductVM(string name)
         {
-            var _tag = _context.Tag.Where(t => t.Name.Contains(name)).Select(n => new TagProductVM()
-            {
-                Name =n.Name,
-                Product = n.ProductTags.Select(c => new ListProductVM()
+            
+            
+                var _tag = _context.Tag.Where(t => t.Name.Contains(name)).Select(n => new TagProductVM()
                 {
-                    Id = c.Product.Id,
-                    Name = c.Product.Name,
-                    Description = c.Product.Description,
-                    ImageUrl = c.Product.ImageUrl,
-                    Price = c.Product.Price,
-                    NewPrice = c.Product.NewPrice,
-                }).ToList()
-            }).FirstOrDefault();
-            if(null != _tag)
+                    Name = n.Name,
+                    Product = n.ProductTags.Select(c => new ListProductVM()
+                    {
+                        Id = c.Product.Id,
+                        Name = c.Product.Name,
+                        Description = c.Product.Description,
+                        ImageUrl = c.Product.ImageUrl,
+                        Price = c.Product.Price,
+                        NewPrice = c.Product.NewPrice,
+                    }).ToList()
+                }).FirstOrDefault();         
+            
+            if (null != _tag)
             {
                 return _tag;
             }
             else return null;
+
         }
     }
 }
