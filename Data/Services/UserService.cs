@@ -83,5 +83,38 @@ namespace ComputerStoreWebApi.Data.Services
                 return _address;
             }
         }
+
+        public UserVM GetUserDetail(string email)
+        {
+            var _user = _context.User.FirstOrDefault(n => n.Email == email);
+            if (_user != null)
+            {
+                var _newUser = new UserVM()
+                {
+                    FirstName = _user.FirstName,
+                    LastName = _user.LastName,
+                    Email = email,
+                    PhoneNumber = _user.PhoneNumber,
+                    Gender = _user.Gender,
+                    DateOfBirth = _user.DateOfBirth,
+                };
+                return _newUser;
+            }
+            else return null;
+        }
+        public List<GetOrder> GetUserOrder(string email)
+        {
+            var _user = _context.User.FirstOrDefault(n => n.Email == email);
+            var _userOrder = _context.UserOrder.Where(n => n.UserId == _user.Id).Select(n => new GetOrder()
+            {
+                Id = n.Order.Id,
+                ProductId = n.Order.ProductId,
+                Quantity = n.Order.Quantity,
+                AddressId = n.Order.AddressId,
+            }).ToList();
+            return _userOrder;
+            
+          
+        }
     }
 }

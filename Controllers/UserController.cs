@@ -29,5 +29,21 @@ namespace ComputerStoreWebApi.Controllers
                 return BadRequest("User not found!");
             }
         }
+        [HttpGet("get-user-detail")]
+        public IActionResult GetUser()
+        {
+            string email = User.FindFirstValue(ClaimTypes.Email);
+            var _response = _userService.GetUserDetail(email);
+            if(_response == null)
+            {
+                return BadRequest("UserNotFound");
+            }
+            else
+            {
+                return Ok(_response);
+            }  
+        }
+
+
     }
 }
