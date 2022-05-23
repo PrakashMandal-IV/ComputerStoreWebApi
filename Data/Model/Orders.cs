@@ -3,18 +3,19 @@
     public class Orders
     {
         public int Id { get; set; } 
-        public int? ProductId { get; set; }
+        public int ProductId { get; set; }
         [NotMapped]
         public Product? Product { get; set; }     
         public int Quantity { get; set; }
         public bool Paid { get; set; }
-        public int? AddressId { get; set; }
+        public int AddressId { get; set; }
         [NotMapped]
         public Address? Address { get; set; } //refrence
         public string Status { get; set; } = "pending";
         public string Substatus { get; set; } = "Approving";
         public string ShipmentTrackingNumber { get; set; }=string.Empty;
-        public int? CreatorId { get; set; } 
+        public int? CreatorId { get; set; }
+        [NotMapped]
         public User? Creator { get; set; }
         public DateTime CreatedAt { get; set; }
         public int? ModifiedId { get; set; }
