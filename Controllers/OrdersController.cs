@@ -5,8 +5,8 @@ using System.Security.Claims;
 namespace ComputerStoreWebApi.Controllers
 {
     [ApiController]
-    [Route("[Controller]")]
-    [Authorize]
+    [Route("[Controller]"),Authorize]
+    
     public class OrdersController : Controller
     {
         private readonly OrdersService _ordersService;
