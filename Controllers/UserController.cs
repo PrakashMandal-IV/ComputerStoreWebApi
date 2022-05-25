@@ -7,11 +7,12 @@ namespace ComputerStoreWebApi.Controllers
     [ApiController]
     [Route("Controller"),Authorize]
     public class UserController : Controller
-    {
+    {  
         private UserService _userService;
         public UserController(UserService userService)
         {
             _userService = userService;
+           
         }
 
 
@@ -29,6 +30,14 @@ namespace ComputerStoreWebApi.Controllers
                 return BadRequest("User not found!");
             }
         }
+        [HttpGet("get-user-address")]
+        public ActionResult GetAddress()
+        {
+            
+            string email = User.FindFirstValue(ClaimTypes.Email);
+            var _response = _userService.GetUserAddress(email);
+            return Ok(_response);
+        }
         [HttpGet("get-user-detail")]
         public IActionResult GetUser()
         {
@@ -44,6 +53,13 @@ namespace ComputerStoreWebApi.Controllers
             }  
         }
 
+        [HttpGet("get-user-order")]
+        public IActionResult GetOrder()
+        {
+            string email = User.FindFirstValue(ClaimTypes.Email);
+            var _response = _userService.GetUserOrder(email);
+            return Ok(_response);
+        }
 
     }
 }
