@@ -20,13 +20,15 @@
             _context.Orders.Add(_order);
             _order.CreatorId = _user?.Id;
             _order.Status = "pending";
-            _order.CreatedAt = DateTime.Now;         
+            _order.CreatedAt = DateTime.Now;
+            _context.SaveChanges();
             var _userOrder = new UserOrder()
             {
                 OrderId = _order.Id,
                 UserId = _user.Id,
             };
-            _context.UserOrder.Add(_userOrder);         
+            _context.UserOrder.Add(_userOrder);
+            _context.SaveChanges();
             var _product = _context.Product.Where(n => n.Id == order.ProductId).FirstOrDefault();
             _product.InStock -= order.Quantity;
             _context.SaveChanges();
@@ -96,9 +98,8 @@
                 return true;        
             }
             else return false;
-            
-
         }
+
         public List<Orders> GetAllOrders(string sort = null)
         {
             var _order = _context.Orders.OrderBy(n => n.CreatedAt).ToList();
@@ -109,7 +110,6 @@
                     _order = _order.OrderByDescending(n => n.CreatedAt).ToList();
                 }
             }
-
             return _order;
         }
         public List<Orders> GetPendingOrders()

@@ -45,6 +45,15 @@ namespace ComputerStoreWebApi.Data
                 .HasOne(p => p.Address)
                 .WithMany(p => p.UserAddresses)
                 .HasForeignKey(i => i.AddressId);
+            modelBuilder.Entity<UserCart>()
+                .HasOne(p => p.User)
+                .WithMany(c => c.userCarts)
+                .HasForeignKey(i => i.UserId);
+            modelBuilder.Entity<UserCart>()
+                .HasOne(p=> p.Cart)
+                .WithMany(c => c.userCarts)
+                .HasForeignKey(i => i.CartId);
+
         }
         public DbSet<Admin> Admin { get; set; } = default!;
         public DbSet<Category> Category { get; set; } = default!;
@@ -60,5 +69,9 @@ namespace ComputerStoreWebApi.Data
         //address
         public DbSet<Address> Address { get; set; } = default!;
         public DbSet<UserAddress> UserAddresses { get; set; } = default!;
+
+        //cart
+        public DbSet<Cart> Carts { get; set; } = default!;
+        public DbSet<UserCart> UserCarts { get; set; } = default!;
     }
 }

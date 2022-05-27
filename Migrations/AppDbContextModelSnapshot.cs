@@ -110,6 +110,27 @@ namespace ComputerStoreWebApi.Migrations
                     b.ToTable("Admin");
                 });
 
+            modelBuilder.Entity("ComputerStoreWebApi.Data.Model.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Carts");
+                });
+
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -153,7 +174,7 @@ namespace ComputerStoreWebApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("AddressId")
+                    b.Property<int>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
@@ -177,7 +198,7 @@ namespace ComputerStoreWebApi.Migrations
                     b.Property<bool>("Paid")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ProductId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
@@ -197,7 +218,11 @@ namespace ComputerStoreWebApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AddressId");
+
                     b.HasIndex("CreatorId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Orders");
                 });
@@ -425,6 +450,29 @@ namespace ComputerStoreWebApi.Migrations
                     b.ToTable("UserAddresses");
                 });
 
+            modelBuilder.Entity("ComputerStoreWebApi.Data.Model.UserCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserCarts");
+                });
+
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.UserOrder", b =>
                 {
                     b.Property<int>("Id")
@@ -448,13 +496,40 @@ namespace ComputerStoreWebApi.Migrations
                     b.ToTable("UserOrder");
                 });
 
+            modelBuilder.Entity("ComputerStoreWebApi.Data.Model.Cart", b =>
+                {
+                    b.HasOne("ComputerStoreWebApi.Data.Model.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.Orders", b =>
                 {
+                    b.HasOne("ComputerStoreWebApi.Data.Model.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ComputerStoreWebApi.Data.Model.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatorId");
 
+                    b.HasOne("ComputerStoreWebApi.Data.Model.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+
                     b.Navigation("Creator");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.Product", b =>
@@ -529,6 +604,25 @@ namespace ComputerStoreWebApi.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ComputerStoreWebApi.Data.Model.UserCart", b =>
+                {
+                    b.HasOne("ComputerStoreWebApi.Data.Model.Cart", "Cart")
+                        .WithMany("userCarts")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ComputerStoreWebApi.Data.Model.User", "User")
+                        .WithMany("userCarts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.UserOrder", b =>
                 {
                     b.HasOne("ComputerStoreWebApi.Data.Model.Orders", "Order")
@@ -551,6 +645,11 @@ namespace ComputerStoreWebApi.Migrations
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.Address", b =>
                 {
                     b.Navigation("UserAddresses");
+                });
+
+            modelBuilder.Entity("ComputerStoreWebApi.Data.Model.Cart", b =>
+                {
+                    b.Navigation("userCarts");
                 });
 
             modelBuilder.Entity("ComputerStoreWebApi.Data.Model.Category", b =>
@@ -580,6 +679,8 @@ namespace ComputerStoreWebApi.Migrations
                     b.Navigation("UserAddresses");
 
                     b.Navigation("UserOrder");
+
+                    b.Navigation("userCarts");
                 });
 #pragma warning restore 612, 618
         }

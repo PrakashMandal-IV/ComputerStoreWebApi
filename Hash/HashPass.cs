@@ -20,6 +20,6 @@ namespace ComputerStoreWebApi.Hash
             }
             return Sb.ToString();
         }
-        }
     }
+}
 
